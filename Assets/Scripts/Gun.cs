@@ -16,7 +16,7 @@ public class Gun : MonoBehaviour
     private bool isShooting=false;
     void Start()
     {
-        HandGunFire.shootInput += StartShooting;
+        //HandGunFire.shootInput += StartShooting;
     }
 
     public void StartShooting()
@@ -24,7 +24,6 @@ public class Gun : MonoBehaviour
         if (!isShooting)
         {
             StartCoroutine(Shoot());
-
         }
     }
 
@@ -40,13 +39,31 @@ public class Gun : MonoBehaviour
             StopShooting();
         }
     }
+
+
+    public IEnumerator down_weapon()
+    {
+        Debug.Log(gunData.name+"_Down");
+        theGun.GetComponent<Animator>().Play(gunData.name+"_Down");
+        yield return new WaitForSeconds(5);
+        theGun.GetComponent<Animator>().Play("New State");
+    }
+
+    public IEnumerator up_weapon()
+    {
+        Debug.Log(gunData.name+"_Up");
+        theGun.GetComponent<Animator>().Play(gunData.name+"_Up");
+        yield return new WaitForSeconds(5);
+        theGun.GetComponent<Animator>().Play("New State");
+    }
+
     IEnumerator Shoot(){
         isShooting=true;
         bool autoShoot = gunData.autoShoot;
 
         do{
         if(gunData.currAmmo > 1){
-        theGun.GetComponent<Animator>().Play(gunData.name);
+        theGun.GetComponent<Animator>().Play(gunData.name+"_Shoot");
         flash.SetActive(true);
         if(!gunShot.isPlaying)
             gunShot.Play();
