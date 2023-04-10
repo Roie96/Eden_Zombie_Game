@@ -17,6 +17,8 @@ public class GunData : ScriptableObject
 
     [Header("Reloading")]
     public int currAmmo;
+
+    public int currMagAmmo;
     public int magSize;
     public float fireRate;
     public float reloadTime;

@@ -13,7 +13,7 @@ public class Weapon_holder : MonoBehaviour
     public int currGun;
     //public static Action shootInput;
 
-    public Gun GunScript;
+    public static Gun GunScript;
     void Start()
     {
         guns.Add(pistol);
@@ -28,8 +28,11 @@ public class Weapon_holder : MonoBehaviour
             GunScript.StartShooting();
         }
 
-        if(Input.GetButtonDown("Jump")){
+        if(Input.GetKeyDown("q")){
             next_gun();
+        }
+        if(Input.GetKeyDown("r")){
+            StartCoroutine(GunScript.Reload());
         }
     }
 

@@ -11,6 +11,6 @@ public class GlobalAmmo : MonoBehaviour
 
     void Update()
     {
-        ammoText.GetComponent<TextMeshProUGUI>().text = "AMMO: " + GlobalAmmo.pistolAmmoCount;
+        ammoText.GetComponent<TextMeshProUGUI>().text = "AMMO: " + Weapon_holder.GunScript.getCurrMagAmmo()+"/"+Weapon_holder.GunScript.getCurrAmmo();
     }
 }
