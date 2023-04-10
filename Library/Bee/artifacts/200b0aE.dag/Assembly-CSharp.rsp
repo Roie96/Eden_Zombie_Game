@@ -349,6 +349,8 @@
 "Assets/IL3DN/Scripts/IL3DN_SimpleMouseLook.cs"
 "Assets/IL3DN/Scripts/IL3DN_Wind.cs"
 "Assets/Scripts/Global/GlobalAmmo.cs"
+"Assets/Scripts/Gun.cs"
+"Assets/Scripts/Scriptable Objects/GunData.cs"
 "Assets/Scripts/Weapons/AmmoCollect.cs"
 "Assets/Scripts/Weapons/HandGunFire.cs"
 "Assets/Scripts/Weapons/RandomDrop.cs"
