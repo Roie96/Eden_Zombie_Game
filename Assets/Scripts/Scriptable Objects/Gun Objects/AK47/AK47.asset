@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: AK47
   m_EditorClassIdentifier: 
   name: AK47
+  isShooting: 0
   damage: 22
   maxDistance: 200
   autoShoot: 1
-  currAmmo: 62
-  currMagAmmo: 30
+  currAmmo: 31
+  currMagAmmo: 0
   magSize: 31
-  fireRate: 600
+  fireRate: 300
   reloadTime: 1.5
-  reloading: 0
+  reloading: 1

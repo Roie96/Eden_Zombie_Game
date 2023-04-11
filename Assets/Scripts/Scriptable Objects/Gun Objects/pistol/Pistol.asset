@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   name: Pistol
+  isShooting: 0
   damage: 50
   maxDistance: 200
-  autoShoot: 1
+  autoShoot: 0
   currAmmo: 30
-  currMagAmmo: 4
+  currMagAmmo: 0
   magSize: 10
-  fireRate: 600
+  fireRate: 200
   reloadTime: 1.5
-  reloading: 0
+  reloading: 1

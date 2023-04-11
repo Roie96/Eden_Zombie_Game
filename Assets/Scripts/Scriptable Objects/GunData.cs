@@ -10,6 +10,7 @@ public class GunData : ScriptableObject
     public new string name;
 
     [Header("Shooting")]
+    public bool isShooting=false;
     public float damage;
     public float maxDistance;
 
@@ -22,6 +23,6 @@ public class GunData : ScriptableObject
     public int magSize;
     public float fireRate;
     public float reloadTime;
-    public bool reloading;
+    public bool reloading = false;
 
 }

@@ -15,34 +15,26 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private Transform muzzle;
 
-    private bool isShooting=false;
+    
     void Start()
     {
         AmmoCollect.maxAmmo += maxAmmo;
     }
 
-    public void StartShooting()
-    {
-        if (!isShooting)
-        {
-            StartCoroutine(Shoot());
-        }
-    }
-
     public void StopShooting()
     {
         // Debug.Log("StopShoot!");
-        isShooting = false;
+        gunData.isShooting = false;
     }
     void Update()
     {
         Debug.DrawRay(muzzle.position, muzzle.forward);
         timeSinceLastShot += Time.deltaTime;
-        if (isShooting && gunData.autoShoot && Input.GetButtonUp("Fire1"))
-        {
-            // Stop shooting if the left mouse button is released
-            StopShooting();
-        }
+        // if (gunData.isShooting && gunData.autoShoot && Input.GetButtonUp("Fire1"))
+        // {
+        //     // Stop shooting if the left mouse button is released
+        //     StopShooting();
+        // }
         if(gunData.currMagAmmo <= 0 && gunData.currAmmo>0){
             StartReload();
         }
@@ -60,6 +52,9 @@ public class Gun : MonoBehaviour
     }
     public int getMagSize(){
         return gunData.magSize;
+    }
+    public bool getIsAuto(){
+        return gunData.autoShoot;
     }
 
     public IEnumerator down_weapon()
@@ -113,6 +108,7 @@ public class Gun : MonoBehaviour
                 }
             }
             else{
+                gunData.isShooting=false;
                 noAmmo.Play();  
             }
     }

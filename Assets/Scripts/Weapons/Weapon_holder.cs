@@ -14,6 +14,9 @@ public class Weapon_holder : MonoBehaviour
     //public static Action shootInput;
 
     public static Gun GunScript;
+
+    public static Action shootInput;
+    public static Action reloadInput;
     void Start()
     {
         guns.Add(pistol);
@@ -23,20 +26,27 @@ public class Weapon_holder : MonoBehaviour
         GunScript = guns[currGun].GetComponent<Gun>();
         StartCoroutine(GunScript.up_weapon());
     }     
+
+    bool isShoot;
     void Update(){
+        
         if(Input.GetButtonDown("Fire1")){
-            GunScript.Shoot2();
+            shootInput?.Invoke();
+            isShoot=true;
         }
 
         if(Input.GetButtonUp("Fire1")){
-            GunScript.StopShooting();
+            isShoot=false;
+        }
+        if(isShoot && GunScript.getIsAuto()){
+            shootInput?.Invoke();
         }
 
         if(Input.GetKeyDown("q")){
             next_gun();
         }
         if(Input.GetKeyDown("r")){
-            GunScript.StartReload();
+            reloadInput?.Invoke();
         }
     }
 
@@ -44,13 +54,25 @@ public class Weapon_holder : MonoBehaviour
     {
         GunScript = guns[currGun].GetComponent<Gun>();
         //StartCoroutine(GunScript.down_weapon());
-        
         guns[currGun].SetActive(false);
-
         currGun = (currGun+1)%guns.Count;
+        unSubscribe(GunScript);
+
         GunScript = guns[currGun].GetComponent<Gun>();
         guns[currGun].SetActive(true);
-        StartCoroutine(GunScript.up_weapon());
-        
+        subscribe(GunScript);
+        StartCoroutine(GunScript.up_weapon());    
+    }
+
+    void unSubscribe(Gun gun){
+        reloadInput -= gun.StartReload;
+        shootInput -= gun.Shoot2;
+
+    }
+
+    void subscribe(Gun gun){
+        reloadInput += gun.StartReload;
+        shootInput += gun.Shoot2;
+
     }
 }
