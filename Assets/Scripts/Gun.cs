@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
     
     public GameObject flash;
 
+    [SerializeField] private Transform muzzle;
+
     private bool isShooting=false;
     void Start()
     {
@@ -29,17 +31,20 @@ public class Gun : MonoBehaviour
 
     public void StopShooting()
     {
+        // Debug.Log("StopShoot!");
         isShooting = false;
     }
     void Update()
     {
+        Debug.DrawRay(muzzle.position, muzzle.forward);
+        timeSinceLastShot += Time.deltaTime;
         if (isShooting && gunData.autoShoot && Input.GetButtonUp("Fire1"))
         {
             // Stop shooting if the left mouse button is released
             StopShooting();
         }
         if(gunData.currMagAmmo <= 0 && gunData.currAmmo>0){
-            StartCoroutine(Reload());
+            StartReload();
         }
     }
 
@@ -59,7 +64,6 @@ public class Gun : MonoBehaviour
 
     public IEnumerator down_weapon()
     {
-        Debug.Log(gunData.name+"_Down");
         theGun.GetComponent<Animator>().Play(gunData.name+"_Down");
         yield return new WaitForSeconds(5);
         theGun.GetComponent<Animator>().Play("New State");
@@ -67,14 +71,21 @@ public class Gun : MonoBehaviour
 
     public IEnumerator up_weapon()
     {
-        Debug.Log(gunData.name+"_Up");
         theGun.GetComponent<Animator>().Play(gunData.name+"_Up");
         yield return new WaitForSeconds(5);
         theGun.GetComponent<Animator>().Play("New State");
     }
 
+    public void StartReload(){
+        if(! gunData.reloading){
+            StartCoroutine(Reload());
+        }
+    }
 
     public IEnumerator Reload(){
+        gunData.reloading = true;
+        yield return new WaitForSeconds(gunData.reloadTime);
+        //HERE Animation
         if(gunData.currAmmo>gunData.magSize){
                 gunData.currAmmo-=(gunData.magSize - gunData.currMagAmmo);
                 gunData.currMagAmmo=gunData.magSize;
@@ -83,34 +94,37 @@ public class Gun : MonoBehaviour
             gunData.currMagAmmo=gunData.currAmmo;
             gunData.currAmmo=0;
         }
-        yield return new WaitForSeconds(0.1f);
+        gunData.reloading = false;
+        
     }
-    IEnumerator Shoot(){
-        isShooting=true;
-        bool autoShoot = gunData.autoShoot;
+    float timeSinceLastShot;
+    private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / ((gunData.fireRate / 60f));
+    public void Shoot2(){
+            if(gunData.currMagAmmo > 0){
+                if(CanShoot()){
+                    if(Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance)){
+                        Debug.Log(hitInfo.transform.name);
+                        Idamageable damage = hitInfo.transform.GetComponent<Idamageable>();
+                        damage?.TakeDamage(gunData.damage);
+                    }
+                    gunData.currMagAmmo--;
+                    timeSinceLastShot = 0;
+                    StartCoroutine(Shoot());
+                }
+            }
+            else{
+                noAmmo.Play();  
+            }
+    }
 
-        do{
-        if(gunData.currMagAmmo > 0){
+    IEnumerator Shoot(){
         theGun.GetComponent<Animator>().Play(gunData.name+"_Shoot");
         flash.SetActive(true);
-        if(!gunShot.isPlaying)
-            gunShot.Play();
-        gunData.currMagAmmo--;
-        yield return new WaitForSeconds(0.05f);
-        flash.SetActive(false);
-        }
-        else if(gunData.currMagAmmo <= 0 && gunData.currAmmo>0){
-            StartCoroutine(Reload());
-        }
-        else{
-            Debug.Log("No Ammo" + name);
-            noAmmo.Play();
-        }
-        yield return new WaitForSeconds(gunData.fireRate);
+        gunShot.Play();
+        
+        yield return new WaitForSeconds(0.1f);
         theGun.GetComponent<Animator>().Play("New State");
-        }while(isShooting && autoShoot);
-        gunShot.Stop();
-        StopShooting();
+        flash.SetActive(false);
     }
 
 }

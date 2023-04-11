@@ -25,14 +25,18 @@ public class Weapon_holder : MonoBehaviour
     }     
     void Update(){
         if(Input.GetButtonDown("Fire1")){
-            GunScript.StartShooting();
+            GunScript.Shoot2();
+        }
+
+        if(Input.GetButtonUp("Fire1")){
+            GunScript.StopShooting();
         }
 
         if(Input.GetKeyDown("q")){
             next_gun();
         }
         if(Input.GetKeyDown("r")){
-            StartCoroutine(GunScript.Reload());
+            GunScript.StartReload();
         }
     }
 

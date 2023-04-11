@@ -11,10 +11,14 @@ public class HandGunFire : MonoBehaviour
     public GameObject flash;
 
     public static Action shootInput; 
-    void Update(){
-        if(Input.GetButtonDown("Fire1")){
-            shootInput?.Invoke();
-        }
-    }
+    // void Update(){
+    //     if(Input.GetButtonDown("Fire1")){
+    //         shootInput?.Invoke();
+    //     }
+
+    //     if(Input.GetButtonDown("q")){
+    //         shootInput?.Invoke();
+    //     }
+    // }
 
 }
