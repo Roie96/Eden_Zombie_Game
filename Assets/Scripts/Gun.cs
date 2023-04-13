@@ -21,13 +21,14 @@ public class Gun : MonoBehaviour
     void Start()
     {
         AmmoCollect.maxAmmo += maxAmmo;
+        gunData.reloading = false;
     }
 
     public void StopShooting()
     {
         // Debug.Log("StopShoot!");
         gunData.isShooting = false;
-        gunData.reloading = false;
+        
     }
     void Update()
     {
@@ -57,6 +58,8 @@ public class Gun : MonoBehaviour
 
     public IEnumerator down_weapon()
     {
+        gunData.reloading = false;
+        gunData.isShooting = false;
         theGun.GetComponent<Animator>().Play(gunData.name+"_Down");
         yield return new WaitForSeconds(5);
         theGun.GetComponent<Animator>().Play("New State");
@@ -64,6 +67,8 @@ public class Gun : MonoBehaviour
 
     public IEnumerator up_weapon()
     {
+        gunData.reloading = false;
+        gunData.isShooting = false;
         theGun.GetComponent<Animator>().Play(gunData.name+"_Up");
         yield return new WaitForSeconds(5);
         theGun.GetComponent<Animator>().Play("New State");
