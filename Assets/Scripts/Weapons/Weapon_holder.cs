@@ -24,6 +24,7 @@ public class Weapon_holder : MonoBehaviour
         guns[(currGun+1)%guns.Count].SetActive(false);
         guns[currGun].SetActive(true);
         GunScript = guns[currGun].GetComponent<Gun>();
+        subscribe(GunScript);
         StartCoroutine(GunScript.up_weapon());
     }     
 
@@ -67,7 +68,6 @@ public class Weapon_holder : MonoBehaviour
     void unSubscribe(Gun gun){
         reloadInput -= gun.StartReload;
         shootInput -= gun.Shoot2;
-
     }
 
     void subscribe(Gun gun){

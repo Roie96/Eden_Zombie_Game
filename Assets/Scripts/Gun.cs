@@ -32,11 +32,6 @@ public class Gun : MonoBehaviour
     {
         Debug.DrawRay( muzzle.position, muzzle.forward);
         timeSinceLastShot += Time.deltaTime;
-        // if (gunData.isShooting && gunData.autoShoot && Input.GetButtonUp("Fire1"))
-        // {
-        //     // Stop shooting if the left mouse button is released
-        //     StopShooting();
-        // }
         if(gunData.currMagAmmo <= 0 && gunData.currAmmo>0){
             StartReload();
         }
@@ -84,7 +79,7 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(gunData.reloadTime);
         //HERE Animation
         if(gunData.currAmmo>gunData.magSize){
-                gunData.currAmmo-=(gunData.magSize - gunData.currMagAmmo);
+                gunData.currAmmo -=gunData.magSize;
                 gunData.currMagAmmo=gunData.magSize;
             }
         else{
@@ -111,7 +106,8 @@ public class Gun : MonoBehaviour
             }
             else{
                 gunData.isShooting=false;
-                noAmmo.Play();  
+                if(! gunData.reloading)
+                    noAmmo.Play();  
             }
     }
 
