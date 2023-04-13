@@ -27,6 +27,7 @@ public class Gun : MonoBehaviour
     {
         // Debug.Log("StopShoot!");
         gunData.isShooting = false;
+        gunData.reloading = false;
     }
     void Update()
     {
