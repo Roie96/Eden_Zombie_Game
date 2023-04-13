@@ -13,6 +13,8 @@ public class Gun : MonoBehaviour
     
     public GameObject flash;
 
+    public Reticle reticle;
+
     [SerializeField] private Transform muzzle;
 
     
@@ -28,7 +30,7 @@ public class Gun : MonoBehaviour
     }
     void Update()
     {
-        Debug.DrawRay(muzzle.position, muzzle.forward);
+        Debug.DrawRay( muzzle.position, muzzle.forward);
         timeSinceLastShot += Time.deltaTime;
         // if (gunData.isShooting && gunData.autoShoot && Input.GetButtonUp("Fire1"))
         // {

@@ -355,6 +355,7 @@
 "Assets/Scripts/Scriptable Objects/Target.cs"
 "Assets/Scripts/Weapons/AmmoCollect.cs"
 "Assets/Scripts/Weapons/RandomDrop.cs"
+"Assets/Scripts/Weapons/Reticle.cs"
 "Assets/Scripts/Weapons/Weapon_holder.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01_UGUI.cs"
