@@ -40,11 +40,11 @@ public class Weapon_holder : MonoBehaviour
             isShoot=false;
         }
 
+        if(Input.GetButtonDown("Fire3")){
+            GunScript.isAiming = false;
+        }
+
         if(Input.GetMouseButtonDown(1)){
-            if(GunScript.isAiming)
-                GunScript.NotAim();
-            else
-                GunScript.Aim();
             GunScript.isAiming = !GunScript.isAiming;
         }
         if(isShoot && GunScript.getIsAuto()){
@@ -55,6 +55,7 @@ public class Weapon_holder : MonoBehaviour
             next_gun();
         }
         if(Input.GetKeyDown("r")){
+            GunScript.isAiming = false;
             reloadInput?.Invoke();
         }
     }
@@ -65,6 +66,7 @@ public class Weapon_holder : MonoBehaviour
         //StartCoroutine(GunScript.down_weapon());
         guns[currGun].SetActive(false);
         currGun = (currGun+1)%guns.Count;
+        GunScript.isAiming = false;
         unSubscribe(GunScript);
 
         GunScript = guns[currGun].GetComponent<Gun>();

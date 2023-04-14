@@ -10,6 +10,8 @@ public class Target : MonoBehaviour, Idamageable
         health-=damage;
         if(health<=0){
             Destroy(gameObject);
+            RandomDrop.ExistTarget--;
         }
     }
+
 }

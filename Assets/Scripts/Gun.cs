@@ -24,6 +24,8 @@ public class Gun : MonoBehaviour
 
     public bool isAiming;
 
+    public float aimSpeed=3.0f;
+
 
     
     void Start()
@@ -32,6 +34,7 @@ public class Gun : MonoBehaviour
         gunData.reloading = false;
         currentPosition = GetComponent<Transform>();
         isAiming = false;
+        
     }
 
     public void StopShooting()
@@ -42,24 +45,6 @@ public class Gun : MonoBehaviour
         
     }
 
-    public void Aim(){
-        Debug.Log("Aiming");
-        // currentPosition.position = aimingPosition.position;
-        // currentPosition.SetParent(aimingPosition);
-        currentPosition.position = aimingPosition.position;
-        currentPosition.localScale = aimingPosition.localScale;
-        // currentPosition.SetPositionAndRotation(aimingPosition.position, aimingPosition.rotation);
-
-    }
-
-    public void NotAim(){
-        Debug.Log("Not Aiming");
-        // currentPosition = defaultPosition;
-        // currentPosition.SetParent(defaultPosition);
-        
-        currentPosition.position = defaultPosition.position;
-        currentPosition.localScale = defaultPosition.localScale;
-    }
     void Update()
     {
         Debug.DrawRay( muzzle.position, muzzle.forward);
@@ -68,15 +53,15 @@ public class Gun : MonoBehaviour
             StartReload();
         }
 
-        // if(isAiming){
-        //     currentPosition.SetPositionAndRotation(aimingPosition.position, aimingPosition.rotation);
+        if(isAiming){
+            currentPosition.position = Vector3.Lerp(currentPosition.position, aimingPosition.position, aimSpeed * Time.deltaTime);
+            currentPosition.localScale = Vector3.Lerp(currentPosition.localScale, aimingPosition.localScale, aimSpeed * Time.deltaTime);
             
-        // }
-        // else{
-        //     currentPosition.SetPositionAndRotation(defaultPosition.position, defaultPosition.rotation);
-        // }
-
-
+        }
+        else{
+            currentPosition.position = Vector3.Lerp(currentPosition.position, defaultPosition.position, aimSpeed * Time.deltaTime);
+            currentPosition.localScale = Vector3.Lerp(currentPosition.localScale, defaultPosition.localScale, aimSpeed * Time.deltaTime);
+        }
     }
 
     public void maxAmmo(){
@@ -115,21 +100,26 @@ public class Gun : MonoBehaviour
     }
 
     public void StartReload(){
-        if(! gunData.reloading){
+        if(! gunData.reloading && gunData.currMagAmmo < gunData.magSize && gunData.currAmmo!=0){
             StartCoroutine(Reload());
         }
     }
 
     public IEnumerator Reload(){
         gunData.reloading = true;
+        theGun.GetComponent<Animator>().Play(gunData.name+"_Load");
         yield return new WaitForSeconds(gunData.reloadTime);
-        //HERE Animation
-        if(gunData.currAmmo>gunData.magSize){
-                gunData.currAmmo -=gunData.magSize;
-                gunData.currMagAmmo=gunData.magSize;
-            }
+        theGun.GetComponent<Animator>().Play("New State");
+
+        int toFill = gunData.magSize - gunData.currMagAmmo;
+        if(toFill <= gunData.currAmmo){
+            gunData.currAmmo-=toFill;
+            gunData.currMagAmmo+=toFill;
+        }
+
         else{
-            gunData.currMagAmmo=gunData.currAmmo;
+
+            gunData.currMagAmmo+=gunData.currAmmo;
             gunData.currAmmo=0;
         }
         gunData.reloading = false;
