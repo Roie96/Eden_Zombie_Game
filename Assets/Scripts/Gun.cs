@@ -17,11 +17,21 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private Transform muzzle;
 
+    public Transform aimingPosition;
+    public Transform defaultPosition;
+
+    public Transform currentPosition;
+
+    public bool isAiming;
+
+
     
     void Start()
     {
         AmmoCollect.maxAmmo += maxAmmo;
         gunData.reloading = false;
+        currentPosition = GetComponent<Transform>();
+        isAiming = false;
     }
 
     public void StopShooting()
@@ -29,6 +39,26 @@ public class Gun : MonoBehaviour
         // Debug.Log("StopShoot!");
         gunData.isShooting = false;
         
+        
+    }
+
+    public void Aim(){
+        Debug.Log("Aiming");
+        // currentPosition.position = aimingPosition.position;
+        // currentPosition.SetParent(aimingPosition);
+        currentPosition.position = aimingPosition.position;
+        currentPosition.localScale = aimingPosition.localScale;
+        // currentPosition.SetPositionAndRotation(aimingPosition.position, aimingPosition.rotation);
+
+    }
+
+    public void NotAim(){
+        Debug.Log("Not Aiming");
+        // currentPosition = defaultPosition;
+        // currentPosition.SetParent(defaultPosition);
+        
+        currentPosition.position = defaultPosition.position;
+        currentPosition.localScale = defaultPosition.localScale;
     }
     void Update()
     {
@@ -37,6 +67,16 @@ public class Gun : MonoBehaviour
         if(gunData.currMagAmmo <= 0 && gunData.currAmmo>0){
             StartReload();
         }
+
+        // if(isAiming){
+        //     currentPosition.SetPositionAndRotation(aimingPosition.position, aimingPosition.rotation);
+            
+        // }
+        // else{
+        //     currentPosition.SetPositionAndRotation(defaultPosition.position, defaultPosition.rotation);
+        // }
+
+
     }
 
     public void maxAmmo(){

@@ -26,14 +26,14 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1102 &-6114488552758541297
+--- !u!1102 &-2652035634151150703
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AK47_aim
+  m_Name: AR_Aiming
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -84,11 +84,11 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
+    m_State: {fileID: -2652035634151150703}
+    m_Position: {x: 270, y: 60, z: 0}
+  - serializedVersion: 1
     m_State: {fileID: -7377522377788735188}
     m_Position: {x: 260, y: 180, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -6114488552758541297}
-    m_Position: {x: 221, y: 427, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

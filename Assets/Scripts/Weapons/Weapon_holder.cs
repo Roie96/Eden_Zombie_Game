@@ -39,6 +39,14 @@ public class Weapon_holder : MonoBehaviour
         if(Input.GetButtonUp("Fire1")){
             isShoot=false;
         }
+
+        if(Input.GetMouseButtonDown(1)){
+            if(GunScript.isAiming)
+                GunScript.NotAim();
+            else
+                GunScript.Aim();
+            GunScript.isAiming = !GunScript.isAiming;
+        }
         if(isShoot && GunScript.getIsAuto()){
             shootInput?.Invoke();
         }
