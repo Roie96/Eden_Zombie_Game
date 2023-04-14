@@ -49,7 +49,7 @@ public class Gun : MonoBehaviour
     {
         Debug.DrawRay( muzzle.position, muzzle.forward);
         timeSinceLastShot += Time.deltaTime;
-        if(gunData.currMagAmmo <= 0 && gunData.currAmmo>0){
+        if(gunData.currMagAmmo == 0 && timeSinceLastShot > 1f / ((gunData.fireRate / 60f))){
             StartReload();
         }
 
