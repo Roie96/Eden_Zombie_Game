@@ -30,6 +30,7 @@ public class Gun : MonoBehaviour
     
     void Start()
     {
+        gunData = Instantiate(gunData);
         AmmoCollect.maxAmmo += maxAmmo;
         gunData.reloading = false;
         currentPosition = GetComponent<Transform>();

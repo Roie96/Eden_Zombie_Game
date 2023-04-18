@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class AI : MonoBehaviour
 {
-    public IL3DN_SimpleFPSController FPSController;
+    public Transform playerTransform;
     
     public float viewAngle = 120f;
     public float viewDistance = 10f;
@@ -16,12 +16,13 @@ public class AI : MonoBehaviour
     public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
     public virtual void Update()
     {
         if(getIsAware()){
             // Chase
-            agent.SetDestination(FPSController.transform.position);
+            agent.SetDestination(playerTransform.position);
             
         }
         else{
@@ -30,8 +31,8 @@ public class AI : MonoBehaviour
     }
 
     public void searchForPlayer(){
-        if(Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(FPSController.transform.position)) < viewAngle / 2f){
-            if(Vector3.Distance(FPSController.transform.position, transform.position) < viewDistance){
+        if(Vector3.Angle(Vector3.forward, transform.InverseTransformPoint(playerTransform.position)) < viewAngle / 2f){
+            if(Vector3.Distance(playerTransform.position, transform.position) < viewDistance){
                 setToAware();
             }
         }
@@ -42,12 +43,19 @@ public class AI : MonoBehaviour
     }
 
     public void setToAware(){
-        Debug.Log("Zombie Chase!");
         isAware = true;
     }
 
     public void setToUnAware(){
         isAware = false;
+    }
+
+    public void setAngleView(float angle){
+        viewAngle = angle;
+    }
+
+    public void setDistanceView(float distance){
+        distance = viewDistance;
     }
 
 }

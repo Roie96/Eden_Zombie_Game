@@ -25,7 +25,7 @@ public class Zombie : AI, Idamageable
 
     private void OnDestroy()
     {
-        RandomDrop.ExistZombie--;
+        EnemiesSystem.ExistZombie--;
     }
 
     // Update is called once per frame
