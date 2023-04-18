@@ -125,7 +125,10 @@ public class Gun : MonoBehaviour
         gunData.reloading = false;
         
     }
+
     float timeSinceLastShot;
+
+    public LayerMask zombiesLayer;
     private bool CanShoot() => !gunData.reloading && timeSinceLastShot > 1f / ((gunData.fireRate / 60f));
     public void Shoot2(){
             if(gunData.currMagAmmo > 0){
@@ -138,6 +141,12 @@ public class Gun : MonoBehaviour
                     gunData.currMagAmmo--;
                     timeSinceLastShot = 0;
                     StartCoroutine(Shoot());
+
+                    Collider [] zombies = Physics.OverlapSphere(transform.position, gunData.noiseDistance, zombiesLayer);
+                    for (int i=0; i<zombies.Length; i++){
+                        zombies[i].GetComponent<AI>().setToAware(); 
+                    }
+                        
                 }
             }
             else{

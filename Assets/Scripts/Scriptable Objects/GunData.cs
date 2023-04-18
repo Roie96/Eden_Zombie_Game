@@ -16,6 +16,8 @@ public class GunData : ScriptableObject
 
     public bool autoShoot;
 
+    public float noiseDistance;
+
     [Header("Reloading")]
     public int currAmmo;
 
