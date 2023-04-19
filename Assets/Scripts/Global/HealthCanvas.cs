@@ -9,6 +9,6 @@ public class HealthCanvas : MonoBehaviour
 
     void Update()
     {
-        HealthText.GetComponent<TextMeshProUGUI>().text = "Health: " + PlayerManager.health;
+        HealthText.GetComponent<TextMeshProUGUI>().text = "Health: " + PlayerManager.currHealth;
     }
 }

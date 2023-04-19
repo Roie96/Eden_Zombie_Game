@@ -4,10 +4,12 @@ using UnityEngine;
 using System;
 public class PlayerManager : MonoBehaviour
 {
-    public static float health = 100f;
+    public static float currHealth = 100f;
+    public static float maxHealth = 100f;
     void Start()
     {
-        
+        currHealth = maxHealth;
+        AppleCollect.appleCollectEvent += fillHealth;
     }
 
     // Update is called once per frame
@@ -16,12 +18,16 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    public void fillHealth(){
+        currHealth = maxHealth;
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Zombie")
         {
-            health-=other.GetComponent<Zombie>().getDamage();
-            Debug.Log(health);
+            currHealth-=other.GetComponent<Zombie>().getDamage();
+            Debug.Log(currHealth);
         }
     }
 }
