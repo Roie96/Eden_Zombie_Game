@@ -33,4 +33,8 @@ public class Zombie : AI, Idamageable
     {
         base.Update();
     }
+
+    public float getDamage(){
+        return zombieDATA.damage;
+    }
 }

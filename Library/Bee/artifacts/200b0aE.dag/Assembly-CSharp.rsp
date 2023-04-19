@@ -350,6 +350,8 @@
 "Assets/IL3DN/Scripts/IL3DN_Wind.cs"
 "Assets/Scripts/Global/EnemiesSystem.cs"
 "Assets/Scripts/Global/GlobalAmmo.cs"
+"Assets/Scripts/Global/HealthCanvas.cs"
+"Assets/Scripts/Global/PlayerManager.cs"
 "Assets/Scripts/Global/SupplyDropsSystem.cs"
 "Assets/Scripts/Gun.cs"
 "Assets/Scripts/InterFace/Idamageable.cs"
