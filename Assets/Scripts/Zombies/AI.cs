@@ -11,7 +11,7 @@ public class AI : MonoBehaviour
     public float viewAngle = 120f;
     public float viewDistance = 10f;
     private bool isAware = false;
-    private NavMeshAgent agent;
+    protected NavMeshAgent agent;
 
     public virtual void Start()
     {

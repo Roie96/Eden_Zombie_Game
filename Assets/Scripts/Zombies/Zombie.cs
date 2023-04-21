@@ -21,6 +21,12 @@ public class Zombie : AI, Idamageable
         base.Start();
 
         zombieDATA = Instantiate(zombieDATA);
+        base.agent.speed = zombieDATA.speed;
+    }
+
+    public void setSpeed(float newSpeed){
+        zombieDATA.speed = newSpeed;
+        base.agent.speed = newSpeed;
     }
 
     private void OnDestroy()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemiesSystem : MonoBehaviour
 {
@@ -40,8 +41,30 @@ public class EnemiesSystem : MonoBehaviour
         xPos = (int)Mathf.Round(playerTransform.position.x - areaAroundThePlayer / 2 + Random.Range(0, areaAroundThePlayer));
         zPos = (int)Mathf.Round(playerTransform.position.z - areaAroundThePlayer / 2 + Random.Range(0, areaAroundThePlayer));
         
-        // Debug.Log("X: " + xPos);
-        // Debug.Log("Z: " + zPos);
-        Instantiate(walkerZombie, new Vector3(xPos, playerTransform.position.y, zPos), Quaternion.identity);
+
+        // Vector3 position = new Vector3(xPos, 0, zPos);
+
+        // // Debug.Log("X: " + xPos);
+        // // Debug.Log("Z: " + zPos);
+        // Instantiate(walkerZombie, position, Quaternion.identity);
+
+        Vector3 position = new Vector3(xPos, 0, zPos);
+        NavMeshHit hit;
+
+        // Sample the position on the NavMesh to find a valid y coordinate
+        if (NavMesh.SamplePosition(position, out hit, 20f, NavMesh.AllAreas))
+        {
+            position = hit.position;
+        }
+
+        // Instantiate the zombie prefab and set its position on the NavMesh
+        GameObject zombie = Instantiate(walkerZombie, position, Quaternion.identity);
+        NavMeshAgent agent = zombie.GetComponent<NavMeshAgent>();
+        if (agent)
+        {
+            agent.Warp(position);
+        }
+
     }
 }
+
