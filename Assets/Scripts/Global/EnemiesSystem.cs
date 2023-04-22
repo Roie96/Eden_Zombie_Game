@@ -35,24 +35,16 @@ public class EnemiesSystem : MonoBehaviour
 
     IEnumerator createZombie()
     {
-        //playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         yield return new WaitForSeconds(5);
 
         xPos = (int)Mathf.Round(playerTransform.position.x - areaAroundThePlayer / 2 + Random.Range(0, areaAroundThePlayer));
         zPos = (int)Mathf.Round(playerTransform.position.z - areaAroundThePlayer / 2 + Random.Range(0, areaAroundThePlayer));
-        
-
-        // Vector3 position = new Vector3(xPos, 0, zPos);
-
-        // // Debug.Log("X: " + xPos);
-        // // Debug.Log("Z: " + zPos);
-        // Instantiate(walkerZombie, position, Quaternion.identity);
+    
 
         Vector3 position = new Vector3(xPos, 0, zPos);
         NavMeshHit hit;
 
-        // Sample the position on the NavMesh to find a valid y coordinate
-        if (NavMesh.SamplePosition(position, out hit, 20f, NavMesh.AllAreas))
+        if (NavMesh.SamplePosition(position, out hit, 50f, NavMesh.AllAreas))
         {
             position = hit.position;
         }

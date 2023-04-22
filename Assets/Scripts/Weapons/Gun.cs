@@ -40,7 +40,6 @@ public class Gun : MonoBehaviour
 
     public void StopShooting()
     {
-        // Debug.Log("StopShoot!");
         gunData.isShooting = false;
         
         
@@ -135,7 +134,6 @@ public class Gun : MonoBehaviour
             if(gunData.currMagAmmo > 0){
                 if(CanShoot()){
                     if(Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance)){
-                        Debug.Log(hitInfo.transform.name);
                         Idamageable damage = hitInfo.transform.GetComponent<Idamageable>();
                         damage?.TakeDamage(gunData.damage);
                     }

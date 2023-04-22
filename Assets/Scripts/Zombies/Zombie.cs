@@ -19,15 +19,10 @@ public class Zombie : AI, Idamageable
     public override void Start()
     {
         base.Start();
-
         zombieDATA = Instantiate(zombieDATA);
-        base.agent.speed = zombieDATA.speed;
+        setSpeed(zombieDATA.speed);
     }
 
-    public void setSpeed(float newSpeed){
-        zombieDATA.speed = newSpeed;
-        base.agent.speed = newSpeed;
-    }
 
     private void OnDestroy()
     {

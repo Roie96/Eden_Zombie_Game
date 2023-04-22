@@ -73,7 +73,6 @@ namespace TMPro.Examples
             }
             else if (SpawnType == 1)
             {
-                //Debug.Log("Spawning TextMesh Objects.");
 
                 m_floatingText_Transform = m_floatingText.transform;
                 m_floatingText_Transform.position = m_transform.position + new Vector3(0, 15f, 0);
@@ -130,7 +129,6 @@ namespace TMPro.Examples
 
                 if (current_Count <= 3)
                 {
-                    //Debug.Log("Fading Counter ... " + current_Count.ToString("f2"));
                     alpha = Mathf.Clamp(alpha - (Time.deltaTime / fadeDuration) * 255, 0, 255);
                 }
 

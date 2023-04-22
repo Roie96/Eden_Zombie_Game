@@ -27,7 +27,6 @@ public class PlayerManager : MonoBehaviour
         if(other.tag == "Zombie")
         {
             currHealth-=other.GetComponent<Zombie>().getDamage();
-            Debug.Log(currHealth);
         }
     }
 }
