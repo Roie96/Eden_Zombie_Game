@@ -31,21 +31,27 @@ public class SupplyDropsSystem : MonoBehaviour
         }      
     }
 
-    IEnumerator RandomCrateFall()
+    IEnumerator RandomCrateFall(Vector3 position = default(Vector3))
     {
         yield return new WaitForSeconds(5);
-        xPos = Random.Range(380, 400);
-        zPos = Random.Range(370, 400);
-        Instantiate(ammoCrate, new Vector3(xPos, 50, zPos), Quaternion.identity);
+        if(position.Equals(default(Vector3))){
+            position = FlagSystem.GetRandomTerrainPosition(100);
+        }
+        
+        position.y+=50;
+        Instantiate(ammoCrate, position, Quaternion.identity);
     
     }
 
-    IEnumerator RandomApple()
+    IEnumerator RandomApple(Vector3 position = default(Vector3))
     {
         yield return new WaitForSeconds(5);
-        xPos = Random.Range(380, 400);
-        zPos = Random.Range(370, 400);
-        Instantiate(appleHealth, new Vector3(xPos, 50, zPos), Quaternion.identity);
+        if(position.Equals(default(Vector3))){
+            position = FlagSystem.GetRandomTerrainPosition(100);
+        }
+        
+        position.y+=50;
+        Instantiate(appleHealth, position, Quaternion.identity);
     
     }
 }

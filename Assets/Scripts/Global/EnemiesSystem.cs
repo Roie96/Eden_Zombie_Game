@@ -37,17 +37,7 @@ public class EnemiesSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
 
-        xPos = (int)Mathf.Round(playerTransform.position.x - areaAroundThePlayer / 2 + Random.Range(0, areaAroundThePlayer));
-        zPos = (int)Mathf.Round(playerTransform.position.z - areaAroundThePlayer / 2 + Random.Range(0, areaAroundThePlayer));
-    
-
-        Vector3 position = new Vector3(xPos, 0, zPos);
-        NavMeshHit hit;
-
-        if (NavMesh.SamplePosition(position, out hit, 50f, NavMesh.AllAreas))
-        {
-            position = hit.position;
-        }
+        Vector3 position = FlagSystem.GetRandomTerrainPosition(200);
 
         // Instantiate the zombie prefab and set its position on the NavMesh
         GameObject zombie = Instantiate(walkerZombie, position, Quaternion.identity);
