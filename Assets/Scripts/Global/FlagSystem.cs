@@ -20,7 +20,6 @@ public class FlagSystem : MonoBehaviour
         newRandomFlagLocated();
         flagObject.SetActive(true);
 
-
     }
 
     // Update is called once per frame
@@ -36,29 +35,42 @@ public class FlagSystem : MonoBehaviour
         flagObject.transform.position = newPosition;
     }
 
-
+    public static void getComponnet()
+    {
+        flagObject = GameObject.FindGameObjectWithTag("Flag");
+        if(flagObject== null)
+            Debug.LogError("No flagObject found in the scene!");
+        terrain = Terrain.activeTerrain;
+        if (terrain == null)
+        {
+            Debug.LogError("No active terrain found!");
+        }
+    }
 
 
     static public Vector3 GetRandomTerrainPosition(float radius, Vector3 center = default(Vector3))
     {
-            if (center.Equals(default(Vector3))){
-                center = flagObject.transform.position;
-            }
-            // Get the terrain bounds
-            Bounds terrainBounds = terrain.terrainData.bounds;
+        if(terrain == null || flagObject == null){
+            getComponnet();
+        }
+        if (center.Equals(default(Vector3))){
+            center = flagObject.transform.position;
+        }
+        // Get the terrain bounds
+        Bounds terrainBounds = terrain.terrainData.bounds;
 
-            // Clamp the center position to the terrain bounds
-            center.x = Mathf.Clamp(center.x, terrainBounds.min.x, terrainBounds.max.x);
-            center.z = Mathf.Clamp(center.z, terrainBounds.min.z, terrainBounds.max.z);
+        // Clamp the center position to the terrain bounds
+        center.x = Mathf.Clamp(center.x, terrainBounds.min.x, terrainBounds.max.x);
+        center.z = Mathf.Clamp(center.z, terrainBounds.min.z, terrainBounds.max.z);
 
-            // Generate a random point within the radius of the center position
-            Vector2 randomOffset = Random.insideUnitCircle * radius;
-            Vector3 randomPos = center + new Vector3(randomOffset.x, 0f, randomOffset.y);
+        // Generate a random point within the radius of the center position
+        Vector2 randomOffset = Random.insideUnitCircle * radius;
+        Vector3 randomPos = center + new Vector3(randomOffset.x, 0f, randomOffset.y);
 
-            // Get the terrain height at the random point
-            float terrainHeight = terrain.SampleHeight(randomPos);
-            randomPos.y = terrainHeight;
+        // Get the terrain height at the random point
+        float terrainHeight = terrain.SampleHeight(randomPos);
+        randomPos.y = terrainHeight;
 
-            return randomPos;
+        return randomPos;
     }
 }
