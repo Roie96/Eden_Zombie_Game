@@ -8,6 +8,8 @@ public class Gun : MonoBehaviour
    public bool isFiring = false;
     public GameObject theGun;
     public AudioSource gunShot;
+    public AudioSource reloadUpSound;
+
 
     public AudioSource noAmmo;
     
@@ -107,6 +109,7 @@ public class Gun : MonoBehaviour
 
     public IEnumerator Reload(){
         gunData.reloading = true;
+        reloadUpSound.Play();
         theGun.GetComponent<Animator>().Play(gunData.name+"_Load");
         yield return new WaitForSeconds(gunData.reloadTime);
         theGun.GetComponent<Animator>().Play("New State");

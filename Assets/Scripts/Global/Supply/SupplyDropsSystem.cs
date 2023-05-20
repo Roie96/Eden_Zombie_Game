@@ -8,7 +8,11 @@ public class SupplyDropsSystem : MonoBehaviour
 {
     public int xPos;
     public int zPos;
+    public GameObject barricadeCrate;
     public GameObject ammoCrate;
+    public GameObject ammoDropUI;
+    public List<GameObject> creates = new List<GameObject>();
+    public int index;
 
     public GameObject appleHealth;
 
@@ -16,8 +20,15 @@ public class SupplyDropsSystem : MonoBehaviour
 
     public static int ExistApples = 0;
 
-
     // Start is called before the first frame update
+    void Start()
+    {
+        creates.Add(barricadeCrate);
+        creates.Add(ammoCrate);
+        creates.Add(appleHealth);
+
+    }
+
     void Update()
     {
         if(ExistAmmo< 5){
@@ -25,33 +36,35 @@ public class SupplyDropsSystem : MonoBehaviour
             StartCoroutine(RandomCrateFall());
         }    
 
-        if(ExistApples< 5){
-            ExistApples++;
-            StartCoroutine(RandomApple());
-        }      
+        //if(ExistApples< 5){
+          //  ExistApples++;
+          //  StartCoroutine(RandomApple());
+       // }      
     }
 
     IEnumerator RandomCrateFall(Vector3 position = default(Vector3))
     {
+        index = UnityEngine.Random.Range(0, 3);
         yield return new WaitForSeconds(5);
         if(position.Equals(default(Vector3))){
             position = FlagSystem.GetRandomTerrainPosition(100);
         }
-        
+        ammoDropUI.SetActive(true);
         position.y+=50;
-        Instantiate(ammoCrate, position, Quaternion.identity);
-    
+        Instantiate(creates[index], position, Quaternion.identity);
+        ammoDropUI.SetActive(false);
+
     }
 
-    IEnumerator RandomApple(Vector3 position = default(Vector3))
-    {
-        yield return new WaitForSeconds(5);
-        if(position.Equals(default(Vector3))){
-            position = FlagSystem.GetRandomTerrainPosition(100);
-        }
+    // IEnumerator RandomApple(Vector3 position = default(Vector3))
+    // {
+    //     yield return new WaitForSeconds(5);
+    //     if(position.Equals(default(Vector3))){
+    //         position = FlagSystem.GetRandomTerrainPosition(100);
+    //     }
         
-        position.y+=50;
-        Instantiate(appleHealth, position, Quaternion.identity);
+    //     position.y+=50;
+    //     Instantiate(appleHealth, position, Quaternion.identity);
     
-    }
+    // }
 }
