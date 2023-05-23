@@ -45,6 +45,7 @@ public class SupplyDropsSystem : MonoBehaviour
     IEnumerator RandomCrateFall(Vector3 position = default(Vector3))
     {
         index = UnityEngine.Random.Range(0, 3);
+        Debug.Log(index);
         yield return new WaitForSeconds(5);
         if(position.Equals(default(Vector3))){
             position = FlagSystem.GetRandomTerrainPosition(100);
