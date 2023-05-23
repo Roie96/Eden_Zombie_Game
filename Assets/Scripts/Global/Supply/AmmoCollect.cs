@@ -13,7 +13,7 @@ public class AmmoCollect : MonoBehaviour
             pickUpSound.Play();
             maxAmmo?.Invoke();
             ammo.SetActive(false);
-            SupplyDropsSystem.ExistAmmo--;
+            SupplyDropsSystem.ExistCrate--;
         }
     }
 }

@@ -13,7 +13,7 @@ public class AppleCollect : MonoBehaviour
             pickUpSound.Play();
             appleCollectEvent?.Invoke();
             apple.SetActive(false);
-            SupplyDropsSystem.ExistApples--;
+            SupplyDropsSystem.ExistCrate--;
         }
     }
 }

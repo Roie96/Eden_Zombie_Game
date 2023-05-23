@@ -12,7 +12,7 @@ public class BuildSystem : MonoBehaviour
     public GameObject woodenBarricade, tempBarricade;
     public bool buildMode;
     public bool placeBarricade; 
-    public static int currAmmoBarricade=0; 
+    public static int currAmmoBarricade=5; 
 
     // Start is called before the first frame update
     void Start()
@@ -60,10 +60,6 @@ public class BuildSystem : MonoBehaviour
 
     public void maxAmmoBarricade(){
         currAmmoBarricade = 5;
-        //unsubscribe to function in Barricade Collect
-        BarricadeCollect.maxAmmoBarricade -= maxAmmoBarricade;
-        //Debug.Log(currAmmoBarricade);
-
     }
 
     public int getCurrAmmoBarricade(){

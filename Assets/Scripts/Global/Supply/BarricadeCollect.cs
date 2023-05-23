@@ -14,7 +14,7 @@ public class BarricadeCollect : MonoBehaviour
             pickUpSound.Play();
             maxAmmoBarricade?.Invoke();
             ammo.SetActive(false);
-            SupplyDropsSystem.ExistAmmo--;
+            SupplyDropsSystem.ExistCrate--;
         }
     }
 }

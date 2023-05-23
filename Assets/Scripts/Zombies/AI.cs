@@ -53,22 +53,11 @@ public class AI : MonoBehaviour
             CreateRandomPoint();         
         }
         if(agent.isOnNavMesh)
-            agent.SetDestination(randomPointToWalk);
+            while(!agent.SetDestination(randomPointToWalk)) // if the random point not close to the nevMesh
+                CreateRandomPoint();
     }
 
     private void CreateRandomPoint(){
-        int xPos = (int)Mathf.Round(playerTransform.position.x - 100f / 2 + Random.Range(0, 100f));
-        int zPos = (int)Mathf.Round(playerTransform.position.z - 100f / 2 + Random.Range(0, 100f));
-        Vector3 position = new Vector3(xPos, 0, zPos);
-        NavMeshHit hit;
-
-        // Sample the position on the NavMesh to find a valid y coordinate
-        if (NavMesh.SamplePosition(position, out hit, 50f, NavMesh.AllAreas))
-        {
-            position = hit.position;
-        }
-        randomPointToWalk = position;
-
         randomPointToWalk = FlagSystem.GetRandomTerrainPosition(50);
     }
 

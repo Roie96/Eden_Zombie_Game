@@ -16,8 +16,7 @@ public class FlagSystem : MonoBehaviour
         {
             Debug.LogError("No active terrain found!");
         }
-
-        newRandomFlagLocated();
+        flagObject.transform.position = terrain.terrainData.bounds.center;
         flagObject.SetActive(true);
 
     }
@@ -33,6 +32,8 @@ public class FlagSystem : MonoBehaviour
         Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x*3 / 4, terrainCenter);
 
         flagObject.transform.position = newPosition;
+
+        
     }
 
     public static void getComponnet()
