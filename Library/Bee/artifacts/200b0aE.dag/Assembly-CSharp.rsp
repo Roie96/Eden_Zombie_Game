@@ -350,6 +350,7 @@
 "Assets/IL3DN/Scripts/IL3DN_Wind.cs"
 "Assets/Scripts/Build system/BuildSystem.cs"
 "Assets/Scripts/Build system/CheckOverlap.cs"
+"Assets/Scripts/Build system/CrashBaricade.cs"
 "Assets/Scripts/Global/EnemiesSystem.cs"
 "Assets/Scripts/Global/FlagSystem.cs"
 "Assets/Scripts/Global/GlobalAmmo.cs"
