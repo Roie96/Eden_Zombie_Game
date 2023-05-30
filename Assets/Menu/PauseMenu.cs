@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
     static public bool isPaused = false;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
+    public GameObject optionsMenu;
+    public GameObject pauseMenuUI;
 
 
 
@@ -18,12 +20,15 @@ public class PauseMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape)){
-            if(isPaused){
+     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PauseMenu.isPaused)
+            {
                 ResumeGame();
             }
-            else{
+            else
+            {
                 PauseGame();
             }
         }
@@ -37,13 +42,24 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-       public void ResumeGame(){
+    public void ResumeGame(){
         existingCanvas.enabled = true;
         pauseCanvas.enabled = false;
         Time.timeScale = 1f;
         isPaused = false;
     }
 
+    public void LoadOptions(){
+       optionsMenu.SetActive(true);
+       pauseMenuUI.SetActive(false);
+
+    }
+
+     public void LoadPauseMenu(){
+       optionsMenu.SetActive(false);
+       pauseMenuUI.SetActive(true);
+
+    }
 
     public void QuitGame(){
         Debug.Log("QUIT!");

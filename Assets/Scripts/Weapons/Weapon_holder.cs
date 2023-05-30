@@ -31,6 +31,11 @@ public class Weapon_holder : MonoBehaviour
     bool isShoot;
     void Update(){
         
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+        
         if(Input.GetButtonDown("Fire1")){
             shootInput?.Invoke();
             isShoot=true;

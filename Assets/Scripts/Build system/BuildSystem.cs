@@ -26,6 +26,11 @@ public class BuildSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+        
         if(Input.GetKeyDown("e")){
             if(buildMode)
                 buildMode = false;
