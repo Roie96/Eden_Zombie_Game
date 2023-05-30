@@ -1,41 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
 
 public class VolumeControl : MonoBehaviour
 {
+    private Slider volumeSlider;
     private AudioSource[] audioSources;
-    public Slider volumeSlider; // Reference to the volume slider UI element
-
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+        volumeSlider = GetComponent<Slider>();
         audioSources = FindObjectsOfType<AudioSource>();
-        UpdateVolumeSlider(); // Update the volume slider to reflect the actual volume
+        volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
 
+         // Set the slider's value to the initial volume
+        float initialVolume = audioSources[0].volume; // Assuming the first audio source represents the overall game volume
+        volumeSlider.value = initialVolume;
     }
 
-  public void SetVolume(float volume)
+    private void OnVolumeChanged(float volume)
     {
-        Debug.Log("Setting volume to: " + volume);
-        foreach (AudioSource audioSource in audioSources) {
+        foreach (AudioSource audioSource in audioSources)
+        {
             audioSource.volume = volume;
-            }
-    }
-
- public void UpdateVolumeSlider()
-    {
-        // Get the volume from any of the audio sources (assuming all have the same volume)
-        float volume = audioSources[0].volume;
-        // Set the volume slider value to reflect the actual volume
-        volumeSlider.value = volume;
+        }
     }
 }
