@@ -7,8 +7,8 @@ public class PauseMenu : MonoBehaviour
     static public bool isPaused = false;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
-    public GameObject optionsMenu;
-    public GameObject pauseMenuUI;
+    // public GameObject optionsMenu;
+    // public GameObject pauseMenuUI;
 
 
 
@@ -49,17 +49,17 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
     }
 
-    public void LoadOptions(){
-       optionsMenu.SetActive(true);
-       pauseMenuUI.SetActive(false);
+    // public void LoadOptions(){
+    //    optionsMenu.SetActive(true);
+    //    pauseMenuUI.SetActive(false);
 
-    }
+    // }
 
-     public void LoadPauseMenu(){
-       optionsMenu.SetActive(false);
-       pauseMenuUI.SetActive(true);
+    //  public void LoadPauseMenu(){
+    //    optionsMenu.SetActive(false);
+    //    pauseMenuUI.SetActive(true);
 
-    }
+    // }
 
     public void QuitGame(){
         Debug.Log("QUIT!");
