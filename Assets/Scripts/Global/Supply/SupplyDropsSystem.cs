@@ -16,8 +16,8 @@ public class SupplyDropsSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        creates.Add(barricadeCrate);
-        creates.Add(ammoCrate);
+        //creates.Add(barricadeCrate);
+        //creates.Add(ammoCrate);
         creates.Add(appleHealth);
     }
 
@@ -37,7 +37,7 @@ public class SupplyDropsSystem : MonoBehaviour
     void RandomCrateFall(Vector3 position = default(Vector3))
     {
         int index = UnityEngine.Random.Range(0, 3);
-        Debug.Log(index);
+        //Debug.Log(index);
         if(position.Equals(default(Vector3))){
             position = FlagSystem.GetRandomTerrainPosition(100);
         }

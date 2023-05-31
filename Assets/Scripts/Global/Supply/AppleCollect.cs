@@ -7,6 +7,7 @@ public class AppleCollect : MonoBehaviour
     public GameObject apple;
     public AudioSource pickUpSound;
     public static Action appleCollectEvent; 
+
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player"){
