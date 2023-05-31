@@ -362,6 +362,7 @@
 "Assets/Scripts/Global/Supply/AmmoCollect.cs"
 "Assets/Scripts/Global/Supply/AppleCollect.cs"
 "Assets/Scripts/Global/Supply/BarricadeCollect.cs"
+"Assets/Scripts/Global/Supply/CoffeeCollect.cs"
 "Assets/Scripts/Global/Supply/SupplyDropsSystem.cs"
 "Assets/Scripts/InterFace/Idamageable.cs"
 "Assets/Scripts/Scriptable Objects/GunData.cs"

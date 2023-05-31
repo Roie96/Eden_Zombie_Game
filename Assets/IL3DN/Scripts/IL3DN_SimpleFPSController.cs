@@ -9,7 +9,7 @@ namespace IL3DN
     public class IL3DN_SimpleFPSController : MonoBehaviour
     {
         [SerializeField] private bool m_IsWalking = false;
-        [SerializeField] private float m_WalkSpeed = 2;
+        [SerializeField] public float m_WalkSpeed = 2;
         [SerializeField] private float m_RunSpeed = 5;
         [SerializeField] [Range(0f, 1f)] private float m_RunstepLenghten = 0.7f;
         [SerializeField] private float m_JumpSpeed = 5;
