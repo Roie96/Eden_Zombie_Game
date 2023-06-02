@@ -38,4 +38,14 @@ public class Zombie : AI, Idamageable
     public float getDamage(){
         return zombieDATA.damage;
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Player")
+        {
+            //currHealth-=other.GetComponent<Zombie>().getDamage();
+            PlayerManager player = other.GetComponent<PlayerManager>(); 
+            player.takeDamage(getDamage());
+        }
+    }
 }

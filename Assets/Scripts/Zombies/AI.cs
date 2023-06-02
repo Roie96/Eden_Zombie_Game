@@ -25,6 +25,7 @@ public class AI : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         renderer = GetComponent<Renderer>();
         CreateRandomPoint();
+        MainGameSystem.newRoundEvent+=CreateRandomPoint;
     }
     public virtual void Update()
     {

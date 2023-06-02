@@ -5,38 +5,28 @@ using UnityEngine.AI;
 
 public class EnemiesSystem : MonoBehaviour
 {
-    public int xPos;
-    public int zPos;
-
-    public float areaAroundThePlayer;
-
-    public GameObject walkerZombie;
+    public static GameObject walkerZombie;
 
     public static int ExistZombie = 0;
 
-    public static int maxZombies = 15;
-
-    public Transform playerTransform;
-
-
     void Start()
     {
-        areaAroundThePlayer = 100f;
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        
     }
 
     void Update()
-    {           
-        if(ExistZombie < maxZombies){
-            ExistZombie++;
-            StartCoroutine(createZombie());
-        }
+    { 
+
     }
 
-    IEnumerator createZombie()
+    public static void createZombies(int n)
     {
-        yield return new WaitForSeconds(5);
+        for(int i=0; i<n; i++)
+            createZombie();
+    }
 
+    public static void createZombie()
+    {
         Vector3 position = FlagSystem.GetRandomTerrainPosition(200);
 
         // Instantiate the zombie prefab and set its position on the NavMesh
@@ -46,7 +36,7 @@ public class EnemiesSystem : MonoBehaviour
         {
             agent.Warp(position);
         }
-
+        ExistZombie++;
     }
 }
 

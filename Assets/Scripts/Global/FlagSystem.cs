@@ -6,6 +6,7 @@ public class FlagSystem : MonoBehaviour
 {
     public static GameObject flagObject;
     public static Terrain terrain;
+
     void Start()
     {
         flagObject = GameObject.FindGameObjectWithTag("Flag");
@@ -27,13 +28,14 @@ public class FlagSystem : MonoBehaviour
         
     }
 
-    void newRandomFlagLocated(){
+    public static void newRandomFlagLocated(){
+        if(terrain == null || flagObject == null){
+            getComponnet();
+        }
         Vector3 terrainCenter = terrain.terrainData.bounds.center;
         Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x*3 / 4, terrainCenter);
 
-        flagObject.transform.position = newPosition;
-
-        
+        flagObject.transform.position = newPosition;  
     }
 
     public static void getComponnet()
@@ -46,6 +48,15 @@ public class FlagSystem : MonoBehaviour
         {
             Debug.LogError("No active terrain found!");
         }
+    }
+
+    public static Vector3 getFlagPosition()
+    {
+        if(terrain == null || flagObject == null){
+            getComponnet();
+        }
+
+        return flagObject.transform.position;
     }
 
 

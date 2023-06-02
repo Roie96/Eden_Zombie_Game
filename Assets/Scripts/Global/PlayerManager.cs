@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using IL3DN;
+using TMPro;
 public class PlayerManager : MonoBehaviour
 {
     
@@ -23,7 +24,9 @@ public class PlayerManager : MonoBehaviour
     public IL3DN_SimpleFPSController fpsController;
     public float speedBoostDuration = 5f;
     public float speedBoostMultiplier = 2f;
+
     
+
     void Start()
     {
         appleCount = 0;
@@ -55,7 +58,7 @@ public class PlayerManager : MonoBehaviour
         if(overlay.color.a > 0 && currHealth > 30){
             // if(currHealth < 30)
             //     return;
-            durationTimer += Time.deltaTime;
+            
             if(durationTimer > duration){
                 // fade image
                 float tempAlpha = overlay.color.a;
@@ -63,23 +66,26 @@ public class PlayerManager : MonoBehaviour
                 overlay.color = new Color(overlay.color.r, overlay.color.g,overlay.color.b,tempAlpha);
             }
         }
+        durationTimer += Time.deltaTime;
     }
+
+
+
 
     public void fillHealth(){
         currHealth = maxHealth;
     }
 
-
-
-    public void OnTriggerEnter(Collider other)
+    public void takeDamage(float damage)
     {
-        if(other.tag == "Zombie")
-        {
-            currHealth-=other.GetComponent<Zombie>().getDamage();
+        if(durationTimer > 1){
+            currHealth-=damage;
             durationTimer = 0;
             overlay.color = new Color(overlay.color.r, overlay.color.g,overlay.color.b,1);
-
         }
+
+        if(currHealth<=0)
+            MainGameSystem.gameOver();
     }
 
     public void maxAmmoApples(){
