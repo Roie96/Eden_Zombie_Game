@@ -29,42 +29,20 @@ public class FlagSystem : MonoBehaviour
     }
 
     public static void newRandomFlagLocated(){
-        if(terrain == null || flagObject == null){
-            getComponnet();
-        }
         Vector3 terrainCenter = terrain.terrainData.bounds.center;
         Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x*3 / 4, terrainCenter);
 
         flagObject.transform.position = newPosition;  
     }
 
-    public static void getComponnet()
-    {
-        flagObject = GameObject.FindGameObjectWithTag("Flag");
-        if(flagObject== null)
-            Debug.LogError("No flagObject found in the scene!");
-        terrain = Terrain.activeTerrain;
-        if (terrain == null)
-        {
-            Debug.LogError("No active terrain found!");
-        }
-    }
-
     public static Vector3 getFlagPosition()
     {
-        if(terrain == null || flagObject == null){
-            getComponnet();
-        }
-
         return flagObject.transform.position;
     }
 
 
     static public Vector3 GetRandomTerrainPosition(float radius, Vector3 center = default(Vector3))
     {
-        if(terrain == null || flagObject == null){
-            getComponnet();
-        }
         if (center.Equals(default(Vector3))){
             center = flagObject.transform.position;
         }

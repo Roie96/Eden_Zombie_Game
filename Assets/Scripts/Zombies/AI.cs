@@ -51,7 +51,7 @@ public class AI : MonoBehaviour
         // keep walking
         
         else if((transform.position - randomPointToWalk).magnitude < 1f){
-            CreateRandomPoint();         
+            CreateRandomPoint();       
         }
         if(agent.isOnNavMesh)
             while(!agent.SetDestination(randomPointToWalk)) // if the random point not close to the nevMesh
@@ -85,7 +85,7 @@ public class AI : MonoBehaviour
 
     public void setSpeed(float newSpeed){
         runSpeed = newSpeed;
-        walkSpeed = newSpeed/4;
+        walkSpeed = newSpeed/2;
     }
 
 }

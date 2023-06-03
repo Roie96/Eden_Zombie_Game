@@ -32,8 +32,11 @@ public class BuildSystem : MonoBehaviour
         }
         
         if(Input.GetKeyDown("e")){
-            if(buildMode)
+            if(buildMode){
                 buildMode = false;
+                tempBarricade.GetComponent<CheckOverlap>().overlap = false;
+            }
+                
             else
                 buildMode = true;
 
