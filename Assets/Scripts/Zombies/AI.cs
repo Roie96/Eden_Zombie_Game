@@ -59,7 +59,8 @@ public class AI : MonoBehaviour
     }
 
     private void CreateRandomPoint(){
-        randomPointToWalk = FlagSystem.GetRandomTerrainPosition(50);
+        if(FlagSystem.flagObject)
+            randomPointToWalk = FlagSystem.GetRandomTerrainPosition(50);
     }
 
     public bool getIsAware(){
