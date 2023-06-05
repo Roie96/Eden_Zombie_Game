@@ -47,6 +47,10 @@ public class BuildSystem : MonoBehaviour
             if (currAmmoBarricade > 0 && !(tempBarricade.GetComponent<CheckOverlap>().overlap)){
                 PlaceBarricade();
             }
+            buildMode = false;
+            tempBarricade.GetComponent<CheckOverlap>().overlap = false;
+            tempBarricade.SetActive(buildMode);
+
         }
 
         // update white barricade position
