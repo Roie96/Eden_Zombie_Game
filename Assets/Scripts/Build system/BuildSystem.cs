@@ -11,12 +11,12 @@ public class BuildSystem : MonoBehaviour
     [SerializeField]
     public GameObject woodenBarricade, tempBarricade;
     public bool buildMode;
-    public bool placeBarricade; 
-    public static int currAmmoBarricade = 5; 
+    public bool placeBarricade;
+    public static int currAmmoBarricade = 500;
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
         buildMode = false;
         tempBarricade.SetActive(false);
         //subscribe to function in Barricade Collect
@@ -30,52 +30,85 @@ public class BuildSystem : MonoBehaviour
         {
             return;
         }
-        
-        if(Input.GetKeyDown("e")){
-            if(buildMode){
+
+        if (Input.GetKeyDown("e"))
+        {
+            if (buildMode)
+            {
                 buildMode = false;
                 tempBarricade.GetComponent<CheckOverlap>().overlap = false;
             }
-                
             else
+            {
                 buildMode = true;
+            }
 
             tempBarricade.SetActive(buildMode);
         }
-        if(Input.GetKeyDown("v") && buildMode){
-            //build
-            if (currAmmoBarricade > 0 && !(tempBarricade.GetComponent<CheckOverlap>().overlap)){
+
+        if (Input.GetKeyDown("v") && buildMode)
+        {
+            // Build
+            if (currAmmoBarricade > 0 && !(tempBarricade.GetComponent<CheckOverlap>().overlap))
+            {
                 PlaceBarricade();
             }
-            buildMode = false;
-            tempBarricade.GetComponent<CheckOverlap>().overlap = false;
-            tempBarricade.SetActive(buildMode);
-
         }
 
-        // update white barricade position
-        if(buildMode && Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit)){
-            tempBarricade.transform.position = _Hit.point;
-            tempBarricade.transform.eulerAngles = new Vector3 (0, Mathf.RoundToInt(transform.eulerAngles.y+90f) != 0 ? 
-            Mathf.RoundToInt((transform.eulerAngles.y+90f) / 90f) * 90f :0, 0);
+        // Update white barricade position
+        if (buildMode && Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
+        {
+            tempBarricade.transform.position = SnapToGrid(_Hit.point);
+            tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
+                Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
         }
-        
     }
 
     public void PlaceBarricade()
     {
-        if(Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit)){
-            Instantiate(woodenBarricade, _Hit.point, tempBarricade.transform.rotation);
+        if (Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
+        {
+            GameObject newBarricade = Instantiate(woodenBarricade, tempBarricade.transform.position, tempBarricade.transform.rotation);
             currAmmoBarricade--;
+            tempBarricade.transform.position = FindClosestBarricade(newBarricade.transform.position);
         }
     }
 
-    public void maxAmmoBarricade(){
+    public void maxAmmoBarricade()
+    {
         currAmmoBarricade = 5;
     }
 
-    public int getCurrAmmoBarricade(){
+    public int getCurrAmmoBarricade()
+    {
         return currAmmoBarricade;
     }
 
+    Vector3 SnapToGrid(Vector3 position)
+    {
+        float gridSize = 1f; // Adjust the grid size as per your requirements
+        float snappedX = Mathf.Floor(position.x / gridSize) * gridSize + gridSize / 2f;
+        float snappedY = position.y;
+        float snappedZ = Mathf.Floor(position.z / gridSize) * gridSize + gridSize / 2f;
+        return new Vector3(snappedX, snappedY, snappedZ);
+    }
+
+    Vector3 FindClosestBarricade(Vector3 position)
+    {
+        GameObject[] barricades = GameObject.FindGameObjectsWithTag("Barricade");
+        float closestDistance = Mathf.Infinity;
+        Vector3 closestPosition = Vector3.zero;
+
+        foreach (GameObject barricade in barricades)
+        {
+            float distance = Vector3.Distance(position, barricade.transform.position);
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestPosition = barricade.transform.position;
+            }
+        }
+
+        return closestPosition;
+    }
 }
