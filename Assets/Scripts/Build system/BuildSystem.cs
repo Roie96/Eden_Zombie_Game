@@ -13,6 +13,7 @@ public class BuildSystem : MonoBehaviour
     public bool buildMode;
     public bool placeBarricade;
     public static int currAmmoBarricade = 500;
+    private float gridSize = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +50,7 @@ public class BuildSystem : MonoBehaviour
         if (Input.GetKeyDown("v") && buildMode)
         {
             // Build
-            if (currAmmoBarricade > 0 && !(tempBarricade.GetComponent<CheckOverlap>().overlap))
+            if (currAmmoBarricade > 0)
             {
                 PlaceBarricade();
             }
@@ -59,20 +60,26 @@ public class BuildSystem : MonoBehaviour
         if (buildMode && Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
         {
             tempBarricade.transform.position = SnapToGrid(_Hit.point);
-            tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
-                Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
+             tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
+                 Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
         }
     }
-
-    public void PlaceBarricade()
+public void PlaceBarricade()
+{
+    if (Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
     {
-        if (Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
-        {
-            GameObject newBarricade = Instantiate(woodenBarricade, tempBarricade.transform.position, tempBarricade.transform.rotation);
-            currAmmoBarricade--;
-            tempBarricade.transform.position = FindClosestBarricade(newBarricade.transform.position);
-        }
+        GameObject newBarricade = Instantiate(woodenBarricade, _Hit.point, tempBarricade.transform.rotation);
+        currAmmoBarricade--;
+
+        Vector3 closestPosition = FindClosestBarricade(newBarricade.transform.position);
+        Vector3 direction = (closestPosition - newBarricade.transform.position).normalized;
+        float offset = (newBarricade.transform.localScale.x + tempBarricade.transform.localScale.x) * 0.5f;
+
+        Vector3 tempBarricadePosition = closestPosition + direction * offset;
+        tempBarricadePosition = SnapToGrid(tempBarricadePosition);
+        tempBarricade.transform.position = new Vector3(tempBarricadePosition.x, tempBarricade.transform.position.y, tempBarricadePosition.z);
     }
+}
 
     public void maxAmmoBarricade()
     {
@@ -86,10 +93,10 @@ public class BuildSystem : MonoBehaviour
 
     Vector3 SnapToGrid(Vector3 position)
     {
-        float gridSize = 1f; // Adjust the grid size as per your requirements
-        float snappedX = Mathf.Floor(position.x / gridSize) * gridSize + gridSize / 2f;
+         // Adjust the grid size as per your requirements
+        float snappedX = Mathf.Floor(position.x / gridSize) * gridSize + gridSize / 1f;
         float snappedY = position.y;
-        float snappedZ = Mathf.Floor(position.z / gridSize) * gridSize + gridSize / 2f;
+        float snappedZ = Mathf.Floor(position.z / gridSize) * gridSize + gridSize / 1f;
         return new Vector3(snappedX, snappedY, snappedZ);
     }
 
