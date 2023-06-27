@@ -50,6 +50,7 @@ public class BuildSystem : MonoBehaviour
         if (Input.GetKeyDown("v") && buildMode)
         {
             // Build
+            //if (currAmmoBarricade > 0 && !(tempBarricade.GetComponent<CheckOverlap>().overlap))
             if (currAmmoBarricade > 0)
             {
                 PlaceBarricade();
@@ -94,9 +95,9 @@ public void PlaceBarricade()
     Vector3 SnapToGrid(Vector3 position)
     {
          // Adjust the grid size as per your requirements
-        float snappedX = Mathf.Floor(position.x / gridSize) * gridSize + gridSize / 1f;
-        float snappedY = position.y;
-        float snappedZ = Mathf.Floor(position.z / gridSize) * gridSize + gridSize / 1f;
+        float snappedX = Mathf.Floor(position.x / gridSize) * gridSize + gridSize / 5f;
+        float snappedY = Mathf.Floor(position.y / gridSize) * gridSize + gridSize / 5f;
+        float snappedZ = Mathf.Floor(position.z / gridSize) * gridSize + gridSize / 5f;
         return new Vector3(snappedX, snappedY, snappedZ);
     }
 
