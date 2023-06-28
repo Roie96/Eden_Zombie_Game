@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
+
+public class GameOverScreen : MonoBehaviour
+{
+    public TextMeshProUGUI scoreText;
+    public Canvas existingCanvas;
+    public Canvas pauseCanvas;
+    
+    
+    public void Setup(int score){
+        existingCanvas.enabled = false;
+        pauseCanvas.enabled = false;
+        gameObject.SetActive(true);
+        scoreText.text = "SCORE: ROUND " + score.ToString();
+        Time.timeScale = 0f;
+    }
+
+      void Update()
+     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            existingCanvas.enabled = false;
+            pauseCanvas.enabled = false;
+        }
+    }
+
+    public void mainMenu()
+        {
+            SceneManager.LoadScene("Menu");
+        }
+
+   public void Restart()
+        {
+            SceneManager.LoadScene("SampleScene");
+        }     
+}
+

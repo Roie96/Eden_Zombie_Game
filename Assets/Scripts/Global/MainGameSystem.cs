@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -17,13 +18,14 @@ public class MainGameSystem : MonoBehaviour
     public static Action newRoundEvent; 
     private bool InFlagZone() => Vector2.Distance(new Vector2(FlagSystem.getFlagPosition().x, FlagSystem.getFlagPosition().z), new Vector2(playerTransform.position.x, playerTransform.position.z)) < HotZoneRing;
     private float timeInHotZone = 0;
+    public GameOverScreen GameOverScreen;
  
     [SerializeField]
     private float HotZoneTime = 120f;
     [SerializeField]
     private float HotZoneRing = 50f;
 
-    private int round_count = 0;
+    private static int round_count = 0;
 
     void Start()
     {
@@ -69,8 +71,9 @@ public class MainGameSystem : MonoBehaviour
         return string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, milliseconds);
     }
 
-    public static void gameOver()
+    public void gameOver()
     {
+        GameOverScreen.Setup(round_count);
         Debug.Log("---- Game Over ----");
     }
 

@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour
     public IL3DN_SimpleFPSController fpsController;
     public float speedBoostDuration = 5f;
     public float speedBoostMultiplier = 2f;
-
+    public  MainGameSystem  MainGameSystem;
     
 
     void Start()
