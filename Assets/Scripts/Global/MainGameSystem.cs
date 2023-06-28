@@ -33,6 +33,7 @@ public class MainGameSystem : MonoBehaviour
         FlagSystem.flagObject = flagObject;
         FlagSystem.terrain = terrain;
         EnemiesSystem.walkerZombie = walkerZombie;
+        round_count = 0;
     }
 
     // Update is called once per frame

@@ -29,10 +29,11 @@ public class GameOverScreen : MonoBehaviour
         }
     }
 
-    public void mainMenu()
-        {
-            SceneManager.LoadScene("Menu");
-        }
+  
+    public void QuitGame(){
+        Debug.Log("QUIT!");
+        Application.Quit();
+    }
 
    public void Restart()
         {
