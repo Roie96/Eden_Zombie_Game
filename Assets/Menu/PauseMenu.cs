@@ -15,6 +15,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
        pauseCanvas.enabled = false;
+       ResumeGame();
     }
 
     // Update is called once per frame

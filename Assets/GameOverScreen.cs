@@ -30,14 +30,15 @@ public class GameOverScreen : MonoBehaviour
     }
 
   
-    public void QuitGame(){
+    public void QuitGame()
+    {
         Debug.Log("QUIT!");
         Application.Quit();
     }
 
    public void Restart()
-        {
-            SceneManager.LoadScene("SampleScene");
-        }     
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }     
 }
 
