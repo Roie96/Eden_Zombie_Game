@@ -20,21 +20,15 @@ public class PauseMenu : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-     {
+    {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // if (PauseMenu.isPaused)
-            // {
-            //     ResumeGame();
-            // }
-            // else
-            // {
-                PauseGame();
-            // }
+            PauseGame();
         }
     }
 
     public void PauseGame(){
+        Cursor.visible = true;
         existingCanvas.enabled = false;
         pauseCanvas.enabled = true;
         Time.timeScale = 0f;
@@ -43,23 +37,12 @@ public class PauseMenu : MonoBehaviour
 
 
     public void ResumeGame(){
+        Cursor.visible = false;
         existingCanvas.enabled = true;
         pauseCanvas.enabled = false;
         Time.timeScale = 1f;
         isPaused = false;
     }
-
-    // public void LoadOptions(){
-    //    optionsMenu.SetActive(true);
-    //    pauseMenuUI.SetActive(false);
-
-    // }
-
-    //  public void LoadPauseMenu(){
-    //    optionsMenu.SetActive(false);
-    //    pauseMenuUI.SetActive(true);
-
-    // }
 
     public void QuitGame(){
         Debug.Log("QUIT!");

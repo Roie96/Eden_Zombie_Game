@@ -13,6 +13,7 @@ public class GameOverScreen : MonoBehaviour
     
     
     public void Setup(int score){
+        Cursor.visible = true;
         existingCanvas.enabled = false;
         pauseCanvas.enabled = false;
         gameObject.SetActive(true);
@@ -20,8 +21,9 @@ public class GameOverScreen : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-      void Update()
+    void Update()
      {
+        Cursor.visible = true;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             existingCanvas.enabled = false;

@@ -8,6 +8,7 @@ public class VolumeControl : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
         volumeSlider = GetComponent<Slider>();
         audioSources = FindObjectsOfType<AudioSource>();
         volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
@@ -15,6 +16,10 @@ public class VolumeControl : MonoBehaviour
          // Set the slider's value to the initial volume
         float initialVolume = audioSources[0].volume; // Assuming the first audio source represents the overall game volume
         volumeSlider.value = initialVolume;
+    }
+    void Update()
+    {
+         Cursor.visible = true;
     }
 
     private void OnVolumeChanged(float volume)
