@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028326, g: 0.22571333, b: 0.30692202, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -781,7 +781,7 @@ GameObject:
   - component: {fileID: 144172348}
   m_Layer: 0
   m_Name: barricade
-  m_TagString: Barricade
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2950,6 +2950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   overlap: 0
+  baricadePos: {fileID: 0}
   Tag: Barricade
 --- !u!65 &646780939
 BoxCollider:
@@ -7298,7 +7299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 136594, guid: 52f6d24e030ad4e029de60eb877fe984, type: 3}
       propertyPath: m_TagString
-      value: Barricade
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 462286, guid: 52f6d24e030ad4e029de60eb877fe984, type: 3}
       propertyPath: m_RootOrder

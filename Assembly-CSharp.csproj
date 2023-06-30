@@ -55,6 +55,7 @@
      <Compile Include="Assets/Scripts/Global/Supply/SupplyDropsSystem.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
+     <Compile Include="Assets/optionscript.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
@@ -86,6 +87,7 @@
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
      <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
+     <Compile Include="Assets/GameOverScreen.cs" />
      <Compile Include="Assets/IL3DN/Scripts/IL3DN_SimpleMouseLook.cs" />
      <Compile Include="Assets/IL3DN/Scripts/IL3DN_SimpleFPSController.cs" />
      <Compile Include="Assets/Scripts/Zombies/ZombieData.cs" />

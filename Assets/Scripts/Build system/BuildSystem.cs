@@ -60,27 +60,39 @@ public class BuildSystem : MonoBehaviour
         // Update white barricade position
         if (buildMode && Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
         {
-            tempBarricade.transform.position = SnapToGrid(_Hit.point);
-             tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
-                 Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
+            // if(tempBarricade.GetComponent<CheckOverlap>().overlap){
+            //     //Transform baricadeT = tempBarricade.GetComponent<CheckOverlap>().baricadePos.position;
+            //     tempBarricade.transform.position = tempBarricade.GetComponent<CheckOverlap>().baricadePos.position;
+            //     tempBarricade.transform.Translate(Vector3.right *0.5f);
+            // }
+            // else{
+            //     tempBarricade.transform.position = _Hit.point;
+            //     tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
+            //      Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
+            // }
+                tempBarricade.transform.position = _Hit.point;
+                tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
+                Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
+                
+                Transform newT = newPositionBaricade(tempBarricade.transform);
+                tempBarricade.transform.position = newT.position;
+                tempBarricade.transform.rotation = newT.rotation;
+                tempBarricade.transform.localScale = newT.localScale;
+
+
+             
         }
     }
-public void PlaceBarricade()
-{
-    if (Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
+    public void PlaceBarricade()
     {
-        GameObject newBarricade = Instantiate(woodenBarricade, _Hit.point, tempBarricade.transform.rotation);
+        // if(Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit)){
+        //     Instantiate(woodenBarricade, _Hit.point, tempBarricade.transform.rotation);
+        //     currAmmoBarricade--;
+        // }
+        GameObject newBarricade = Instantiate(woodenBarricade, tempBarricade.transform.position, tempBarricade.transform.rotation);
+        newBarricade.tag = "Barricade";
         currAmmoBarricade--;
-
-        Vector3 closestPosition = FindClosestBarricade(newBarricade.transform.position);
-        Vector3 direction = (closestPosition - newBarricade.transform.position).normalized;
-        float offset = (newBarricade.transform.localScale.x + tempBarricade.transform.localScale.x) * 0.5f;
-
-        Vector3 tempBarricadePosition = closestPosition + direction * offset;
-        tempBarricadePosition = SnapToGrid(tempBarricadePosition);
-        tempBarricade.transform.position = new Vector3(tempBarricadePosition.x, tempBarricade.transform.position.y, tempBarricadePosition.z);
     }
-}
 
     public void maxAmmoBarricade()
     {
@@ -101,22 +113,34 @@ public void PlaceBarricade()
         return new Vector3(snappedX, snappedY, snappedZ);
     }
 
-    Vector3 FindClosestBarricade(Vector3 position)
+    Transform newPositionBaricade(Transform currTransform)
     {
         GameObject[] barricades = GameObject.FindGameObjectsWithTag("Barricade");
-        float closestDistance = Mathf.Infinity;
-        Vector3 closestPosition = Vector3.zero;
+        float closestDistance = 2.5f;
+        Vector3 closestPosition = currTransform.position;
+        Transform tempBaricade = null;
 
         foreach (GameObject barricade in barricades)
         {
-            float distance = Vector3.Distance(position, barricade.transform.position);
-            if (distance < closestDistance)
+            float distance = Vector3.Distance(currTransform.position, barricade.transform.position);
+            if (distance < closestDistance && currTransform != barricade.transform)
             {
                 closestDistance = distance;
                 closestPosition = barricade.transform.position;
+                tempBaricade = barricade.transform;
             }
         }
-
-        return closestPosition;
+        if(currTransform.position != closestPosition){
+            currTransform.rotation = tempBaricade.rotation;
+            if(currTransform.position.x < closestPosition.x){ //right
+                currTransform.transform.position = closestPosition;
+                currTransform.transform.Translate(-currTransform.transform.forward * 1.5f, Space.World);
+            }
+            else{ //left
+                currTransform.transform.position = closestPosition;
+                currTransform.transform.Translate(currTransform.transform.forward * 1.5f, Space.World);
+            }
+        }
+        return currTransform;
     }
 }

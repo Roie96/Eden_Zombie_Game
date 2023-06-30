@@ -5,12 +5,14 @@ using UnityEngine;
 public class CheckOverlap : MonoBehaviour
 {
     public bool overlap;
+    public Transform baricadePos;
     [SerializeField] public string Tag;
 
     private void OnTriggerStay(Collider other)
     {  
         if (other.CompareTag(Tag)){  
             overlap = true;
+            baricadePos = other.transform;
         }
     }
 
