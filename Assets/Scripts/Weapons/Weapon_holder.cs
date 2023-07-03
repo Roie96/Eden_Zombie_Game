@@ -68,7 +68,6 @@ public class Weapon_holder : MonoBehaviour
     void next_gun()
     {
         GunScript = guns[currGun].GetComponent<Gun>();
-        //StartCoroutine(GunScript.down_weapon());
         guns[currGun].SetActive(false);
         currGun = (currGun+1)%guns.Count;
         GunScript.isAiming = false;
