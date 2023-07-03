@@ -6,7 +6,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638238234560000000
+      ticks: 638239855100000000
     m_Hash: 1719789460
   m_LockFileStatus:
     m_FilePath: "/Users/roieshahar/Desktop/\u05DC\u05D9\u05DE\u05D5\u05D3\u05D9\u05DD/\u05E9\u05E0\u05D4
@@ -15,7 +15,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638238234560000000
+      ticks: 638239855100000000
     m_Hash: 1755400957
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -2936,11 +2936,13 @@ m_ResolvedPackages:
     - 2.0.2
     - 2.0.3
     - 2.0.4
+    - 2.0.5
     compatible:
     - 1.0.6
     - 2.0.2
     - 2.0.3
     - 2.0.4
+    - 2.0.5
     verified: 1.0.6
   dependencies: []
   resolvedDependencies: []
