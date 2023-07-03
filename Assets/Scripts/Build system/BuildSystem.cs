@@ -68,7 +68,7 @@ public class BuildSystem : MonoBehaviour
                 tempBarricade.transform.localScale = newT.localScale;
         }
     }
-    public void PlaceBarricade(){
+    public void PlaceBarricade(){ 
         GameObject newBarricade = Instantiate(woodenBarricade, tempBarricade.transform.position, tempBarricade.transform.rotation);
         newBarricade.tag = "Barricade";
         currAmmoBarricade--;

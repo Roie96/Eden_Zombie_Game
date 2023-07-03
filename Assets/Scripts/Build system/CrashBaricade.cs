@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CrashBaricade : MonoBehaviour
 {
+    public float health;
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,8 +14,7 @@ public class CrashBaricade : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
     }
 
     public void OnTriggerEnter(Collider other)
@@ -25,6 +26,17 @@ public class CrashBaricade : MonoBehaviour
             pushDirection.Normalize();
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
             playerRigidbody.AddForceAtPosition(pushDirection * 80, other.transform.position ,ForceMode.Impulse);
+            takeDamageBarricade(damage);
+        }
+    }
+
+    public void takeDamageBarricade(float damage)
+    {
+        if (gameObject.tag == "Barricade"){
+        health-=damage;
+        if(health<=0 && gameObject != null){
+            Destroy(this.gameObject);
+        }
         }
     }
 }
