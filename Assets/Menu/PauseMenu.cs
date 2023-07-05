@@ -7,8 +7,6 @@ public class PauseMenu : MonoBehaviour
     static public bool isPaused = false;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
-    // public GameObject optionsMenu;
-    // public GameObject pauseMenuUI;
 
 
     // Start is called before the first frame update
