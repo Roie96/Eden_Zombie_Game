@@ -11,7 +11,6 @@ public class MouseControl : MonoBehaviour
     {
         
         Cursor.visible = true;
-
         StartCoroutine(GrantMouseControlCoroutine());
     }
 
