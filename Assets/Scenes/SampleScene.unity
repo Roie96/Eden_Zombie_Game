@@ -2092,8 +2092,11 @@ MonoBehaviour:
   cammeraTranform: {fileID: 4601299}
   woodenBarricade: {fileID: 144172343}
   tempBarricade: {fileID: 646780936}
+  objectToPlace: {fileID: 0}
+  tempObject: {fileID: 0}
   buildMode: 0
   placeBarricade: 0
+  isCollidingWithTerrain: 0
 --- !u!1 &485381726
 GameObject:
   m_ObjectHideFlags: 0
@@ -10124,7 +10127,7 @@ GameObject:
   - component: {fileID: 1814693496}
   m_Layer: 6
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -10139,7 +10142,7 @@ TerrainCollider:
   m_Material: {fileID: 0}
   m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 687d8c91345e246cd941b8e22b9639bf, type: 2}
-  m_EnableTreeColliders: 1
+  m_EnableTreeColliders: 0
 --- !u!218 &1814693497
 Terrain:
   m_ObjectHideFlags: 0

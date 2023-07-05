@@ -10,9 +10,11 @@ public class BuildSystem : MonoBehaviour
     private RaycastHit _Hit;
     [SerializeField]
     public GameObject woodenBarricade, tempBarricade;
+    public GameObject objectToPlace, tempObject;
     public bool buildMode;
     public bool placeBarricade;
-    public static int currAmmoBarricade = 0;
+    public static int currAmmoBarricade = 550;
+    public bool isCollidingWithTerrain;
 
     // Start is called before the first frame update
     void Start()
@@ -42,31 +44,41 @@ public class BuildSystem : MonoBehaviour
             {
                 buildMode = true;
             }
-
             tempBarricade.SetActive(buildMode);
         }
 
         if (Input.GetKeyDown("v") && buildMode)
         {
             // Build
-            if (currAmmoBarricade > 0)
+            if (currAmmoBarricade > 0 && isCollidingWithTerrain)
             {
                 PlaceBarricade();
             }
         }
-
-        // Update white barricade position
-        if (buildMode && Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit))
+        if (buildMode)
         {
+            // Check if the terrain is colliding with tempBarricade
+            isCollidingWithTerrain = Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit) &&
+                _Hit.transform.tag == "Terrain";
+
+            if (isCollidingWithTerrain)
+            {
+                tempBarricade.SetActive(true);
                 tempBarricade.transform.position = _Hit.point;
                 tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
-                Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
-                
+                    Mathf.RoundToInt((transform.eulerAngles.y + 90f) / 90f) * 90f : 0, 0);
+
                 Transform newT = newPositionBaricade(tempBarricade.transform);
                 tempBarricade.transform.position = newT.position;
                 tempBarricade.transform.rotation = newT.rotation;
                 tempBarricade.transform.localScale = newT.localScale;
+            }
+            else
+            {
+                tempBarricade.SetActive(false);
+            }
         }
+      
     }
     public void PlaceBarricade(){ 
         GameObject newBarricade = Instantiate(woodenBarricade, tempBarricade.transform.position, tempBarricade.transform.rotation);
