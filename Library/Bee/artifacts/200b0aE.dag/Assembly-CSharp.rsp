@@ -352,6 +352,7 @@
 "Assets/Menu/MainMenu.cs"
 "Assets/Menu/PauseMenu.cs"
 "Assets/Menu/VolumeControl.cs"
+"Assets/MouseControl.cs"
 "Assets/optionscript.cs"
 "Assets/Scripts/Build system/BuildSystem.cs"
 "Assets/Scripts/Build system/CheckOverlap.cs"

@@ -19,7 +19,7 @@ public class VolumeControl : MonoBehaviour
     }
     void Update()
     {
-         Cursor.visible = true;
+        Cursor.visible = true;
     }
 
     private void OnVolumeChanged(float volume)

@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
+    private bool hasControlOverMouse = false;
+
     static public bool isPaused = false;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
-
 
     // Start is called before the first frame update
     void Start()
     {
        pauseCanvas.enabled = false;
        ResumeGame();
+       Cursor.visible = true;
     }
 
     // Update is called once per frame
@@ -23,10 +25,12 @@ public class PauseMenu : MonoBehaviour
         {
             PauseGame();
         }
+       
+        StartCoroutine(GrantMouseControlCoroutine());
     }
 
     public void PauseGame(){
-        Cursor.visible = true;
+        //Cursor.visible = true;
         existingCanvas.enabled = false;
         pauseCanvas.enabled = true;
         Time.timeScale = 0f;
@@ -35,15 +39,29 @@ public class PauseMenu : MonoBehaviour
 
 
     public void ResumeGame(){
-        Cursor.visible = false;
+        //Cursor.visible = false;
         existingCanvas.enabled = true;
         pauseCanvas.enabled = false;
         Time.timeScale = 1f;
         isPaused = false;
+
     }
 
     public void QuitGame(){
         Debug.Log("QUIT!");
         Application.Quit();
     }
+    private IEnumerator GrantMouseControlCoroutine(){
+        Cursor.visible = true;
+
+        yield return null; // Wait for one frame to ensure UI elements are properly rendered
+
+        hasControlOverMouse = true;
+
+        while (Cursor.lockState != CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+            yield return null; // Wait for one frame
+        }
+    }    
 }

@@ -10,20 +10,41 @@ public class GameOverScreen : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
-    
-    
-    public void Setup(int score){
+
+    private bool hasControlOverMouse = false;
+
+    public void Setup(int score)
+    {
         Cursor.visible = true;
         existingCanvas.enabled = false;
         pauseCanvas.enabled = false;
         gameObject.SetActive(true);
         scoreText.text = "SCORE: ROUND " + score.ToString();
         Time.timeScale = 0f;
+
+        StartCoroutine(GrantMouseControlCoroutine());
     }
 
+private IEnumerator GrantMouseControlCoroutine()
+{
+    yield return null; // Wait for one frame to ensure UI elements are properly rendered
+
+    hasControlOverMouse = true;
+
+    while (Cursor.lockState != CursorLockMode.None)
+    {
+        Cursor.lockState = CursorLockMode.None; // Unlock the cursor
+        yield return null; // Wait for one frame
+    }
+}
+
     void Update()
-     {
-        Cursor.visible = true;
+    {
+        if (hasControlOverMouse)
+        {
+            Cursor.visible = true;
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             existingCanvas.enabled = false;
@@ -31,16 +52,14 @@ public class GameOverScreen : MonoBehaviour
         }
     }
 
-  
     public void QuitGame()
     {
         Debug.Log("QUIT!");
         Application.Quit();
     }
 
-   public void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }     
+    }
 }
-
