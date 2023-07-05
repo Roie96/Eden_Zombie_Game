@@ -10,7 +10,6 @@ public class BuildSystem : MonoBehaviour
     private RaycastHit _Hit;
     [SerializeField]
     public GameObject woodenBarricade, tempBarricade;
-    public GameObject objectToPlace, tempObject;
     public bool buildMode;
     public bool placeBarricade;
     public static int currAmmoBarricade = 550;
@@ -47,22 +46,13 @@ public class BuildSystem : MonoBehaviour
             tempBarricade.SetActive(buildMode);
         }
 
-        if (Input.GetKeyDown("v") && buildMode)
-        {
-            // Build
-            if (currAmmoBarricade > 0 && isCollidingWithTerrain)
-            {
-                PlaceBarricade();
-            }
-        }
         if (buildMode)
         {
             // Check if the terrain is colliding with tempBarricade
             isCollidingWithTerrain = Physics.Raycast(new Ray(cammeraTranform.position, cammeraTranform.forward), out _Hit) &&
                 _Hit.transform.tag == "Terrain";
 
-            if (isCollidingWithTerrain)
-            {
+            if (isCollidingWithTerrain){
                 tempBarricade.SetActive(true);
                 tempBarricade.transform.position = _Hit.point;
                 tempBarricade.transform.eulerAngles = new Vector3(0, Mathf.RoundToInt(transform.eulerAngles.y + 90f) != 0 ?
@@ -74,8 +64,15 @@ public class BuildSystem : MonoBehaviour
                 tempBarricade.transform.localScale = newT.localScale;
             }
             else
-            {
                 tempBarricade.SetActive(false);
+        }
+
+        if (Input.GetKeyDown("v") && buildMode && isCollidingWithTerrain)
+        {
+            // Build
+            if (currAmmoBarricade > 0)
+            {
+                PlaceBarricade();
             }
         }
       
@@ -99,6 +96,7 @@ public class BuildSystem : MonoBehaviour
         float closestDistance = 3f;
         Vector3 closestPosition = currTransform.position;
         Transform tempBaricade = null;
+        float scale =  10f;
 
         foreach (GameObject barricade in barricades)
         {
@@ -119,6 +117,13 @@ public class BuildSystem : MonoBehaviour
             else{ //left
                 currTransform.transform.position = closestPosition;
                 currTransform.transform.Translate(currTransform.transform.forward * 1.5f, Space.World);
+            }
+            // Adjust to terrain surface
+            RaycastHit hit;
+            if (Physics.Raycast(currTransform.position + Vector3.up * scale , Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Terrain")))
+            {
+                currTransform.rotation = Quaternion.FromToRotation(currTransform.up, hit.normal) * currTransform.rotation;
+                currTransform.position = hit.point;
             }
         }
         return currTransform;
