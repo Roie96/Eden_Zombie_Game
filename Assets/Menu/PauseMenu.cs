@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     static public bool isPaused = false;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
+    public GameObject pauseUI;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,13 +24,12 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PauseGame();
-            // if(isPaused)
-            //     ResumeGame();
-            // else
-            // {
-            //     PauseGame();
-            // }  
+            if(isPaused)
+                ResumeGame();
+            else
+            {
+                PauseGame();
+            }  
         }
         if (isPaused){
             Cursor.visible = true;
@@ -42,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         pauseCanvas.enabled = true;
         Time.timeScale = 0f;
         isPaused = true;
+        pauseUI.SetActive(true);
     }
 
 
