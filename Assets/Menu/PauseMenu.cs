@@ -22,12 +22,13 @@ public class PauseMenu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(isPaused)
-                ResumeGame();
-            else
-            {
-                PauseGame();
-            }  
+            PauseGame();
+            // if(isPaused)
+            //     ResumeGame();
+            // else
+            // {
+            //     PauseGame();
+            // }  
         }
         if (isPaused){
             Cursor.visible = true;
