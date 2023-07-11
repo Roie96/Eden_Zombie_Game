@@ -16,7 +16,7 @@
 | 13 |  11-15/6  | 0 |  Due to upcoming 2 tests, we did not make any progress.
 | 14 |  18-22/6  | 0 |  Due to upcoming 2 exams, we did not make any progress.
 | 15 |  26-30/6  | 20 |  On 26.6, we worked for 6 hours to improve the build system. on 27.6, we continued working on the build system for 6 hours, attempting to make the barricades snap to each other, but we didn't make any progress. 28.6 we worked for 4 hours on making game over screen. on 30.6 we worked for 4 hours and successfully managed to make the barricades snap next to each other.
-| 16 |  2-7/7  | 12 |  On 3.7, we worked for 3 hours add a damge system to the barricade, now after 5 hits from the Zombies the barricade we'll be destory. On 5.7 we continue to work on the build system for 5 hours ,now you can place a barricades only on the terrain and 5 hours on the mouse cursor bug.
+| 16 |  2-7/7  | 13 |  On 3.7, we worked for 3 hours to add a damage system to the barricade. Now, after 5 hits from the zombies, the barricade will be destroyed. On 5.7, we continued to work on the build system for 5 hours. Now, you can only place barricades on the terrain, and we spent 5 hours fixing the mouse cursor bug.
 
 
 
