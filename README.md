@@ -18,6 +18,8 @@
 | 15 |  26-30/6  | 20 |  On 26.6, we worked for 6 hours to improve the build system. on 27.6, we continued working on the build system for 6 hours, attempting to make the barricades snap to each other, but we didn't make any progress. 28.6 we worked for 4 hours on making game over screen. on 30.6 we worked for 4 hours and successfully managed to make the barricades snap next to each other.
 | 16 |  2-7/7  | 13 |  On 3.7, we worked for 3 hours to add a damage system to the barricade. Now, after 5 hits from the zombies, the barricade will be destroyed. On 5.7, we continued to work on the build system for 5 hours. Now, you can only place barricades on the terrain, and we spent 5 hours fixing the mouse cursor bug.
 | 17 |  9-14/7  | 0.5 |  On 11.7, we worked for half a hour on the UI.
+| 18 |  16-20/7  | 0 | This week and the week before, we let our friends play the game and give us feedback.
+| 19 |  16-20/7  | 1.5 | Create a survey to determine if the game is playable. On 24.7, we worked for 1 hour to address the feedback and added a hitmark.
 
 
 
