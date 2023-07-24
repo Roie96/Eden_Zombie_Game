@@ -3349,6 +3349,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.45
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
+      propertyPath: field of view
+      value: 57.19689
+      objectReference: {fileID: 0}
     - target: {fileID: 5400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_Drag
       value: 0.7
@@ -9939,7 +9943,7 @@ RectTransform:
   m_GameObject: {fileID: 1768515609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 62104554}
@@ -9977,7 +9981,7 @@ MonoBehaviour:
   reticle: {fileID: 1768515610}
   rg: {fileID: 1812308091}
   restingSize: 75
-  maxSize: 300
+  maxSize: 90
   speed: 3
 --- !u!4 &1779502998 stripped
 Transform:
@@ -10371,7 +10375,7 @@ RectTransform:
   m_GameObject: {fileID: 1882494315}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1762633829}
@@ -10409,7 +10413,7 @@ MonoBehaviour:
   reticle: {fileID: 1882494316}
   rg: {fileID: 1812308091}
   restingSize: 75
-  maxSize: 300
+  maxSize: 90
   speed: 3
 --- !u!1 &1883855488
 GameObject:
