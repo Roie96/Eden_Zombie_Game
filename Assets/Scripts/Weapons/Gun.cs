@@ -176,7 +176,7 @@ public class Gun : MonoBehaviour
     IEnumerator showHitmark() {
         hitMark.SetActive(true);
         yield return new WaitForSeconds(0.1f);
-        Debug.Log("hit");
+        //Debug.Log("hit");
         hitMark.SetActive(false);
     }
 
