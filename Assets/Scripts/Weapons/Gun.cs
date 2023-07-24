@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-   [SerializeField] GunData gunData;
-   public bool isFiring = false;
+    [SerializeField] GunData gunData;
+    public bool isFiring = false;
     public GameObject theGun;
+    public GameObject hitMark;
     public AudioSource gunShot;
     public AudioSource reloadUpSound;
 
@@ -138,6 +139,10 @@ public class Gun : MonoBehaviour
                 if(CanShoot()){
                     if(Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance)){
                         Idamageable damage = hitInfo.transform.GetComponent<Idamageable>();
+                         if (damage != null){
+                                damage.TakeDamage(gunData.damage);
+                                StartCoroutine(showHitmark());
+                            }
                         damage?.TakeDamage(gunData.damage);
                     }
                     gunData.currMagAmmo--;
@@ -167,5 +172,13 @@ public class Gun : MonoBehaviour
         theGun.GetComponent<Animator>().Play("New State");
         flash.SetActive(false);
     }
+
+    IEnumerator showHitmark() {
+        hitMark.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("hit");
+        hitMark.SetActive(false);
+    }
+
 
 }

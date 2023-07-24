@@ -12,7 +12,7 @@ public class BuildSystem : MonoBehaviour
     public GameObject woodenBarricade, tempBarricade;
     public bool buildMode;
     public bool placeBarricade;
-    public static int currAmmoBarricade = 550;
+    public static int currAmmoBarricade = 0;
     public bool isCollidingWithTerrain;
 
     // Start is called before the first frame update

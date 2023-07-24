@@ -19,6 +19,7 @@ public class MainGameSystem : MonoBehaviour
     private bool InFlagZone() => Vector2.Distance(new Vector2(FlagSystem.getFlagPosition().x, FlagSystem.getFlagPosition().z), new Vector2(playerTransform.position.x, playerTransform.position.z)) < HotZoneRing;
     private float timeInHotZone = 0;
     public GameOverScreen GameOverScreen;
+    public int zomibeCount; 
  
     [SerializeField]
     private float HotZoneTime = 120f;
@@ -58,7 +59,7 @@ public class MainGameSystem : MonoBehaviour
         FlagSystem.newRandomFlagLocated();
 
         // create zombies
-        EnemiesSystem.createZombies(round_count * 3);
+        EnemiesSystem.createZombies(round_count * zomibeCount);
 
         newRoundEvent?.Invoke();
     }

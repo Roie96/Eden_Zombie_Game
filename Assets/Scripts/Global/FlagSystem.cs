@@ -6,6 +6,7 @@ public class FlagSystem : MonoBehaviour
 {
     public static GameObject flagObject;
     public static Terrain terrain;
+    public static float range = 1/4;
 
     void Start()
     {
@@ -30,7 +31,7 @@ public class FlagSystem : MonoBehaviour
 
     public static void newRandomFlagLocated(){
         Vector3 terrainCenter = terrain.terrainData.bounds.center;
-        Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x*3 / 4, terrainCenter);
+        Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x* range, terrainCenter);
 
         flagObject.transform.position = newPosition;  
     }
