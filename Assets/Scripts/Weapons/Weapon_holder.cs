@@ -49,9 +49,27 @@ public class Weapon_holder : MonoBehaviour
             GunScript.isAiming = false;
         }
 
-        if(Input.GetMouseButtonDown(1)){
-            GunScript.isAiming = !GunScript.isAiming;
+        // if(Input.GetMouseButtonDown(1)){
+        //     GunScript.isAiming = !GunScript.isAiming;
+        // }
+        if (Input.GetMouseButtonDown(1))
+        {
+            GunScript.isAiming = true; // Start aiming when the right mouse button is pressed
         }
+        if (Input.GetMouseButtonUp(1))
+        {
+            GunScript.isAiming = false; // Stop aiming when the right mouse button is released
+        }
+
+        if (GunScript.isAiming)
+        {
+            GunScript.isAiming = true;
+        }
+        else
+        {
+            GunScript.isAiming = false;
+        }
+
         if(isShoot && GunScript.getIsAuto()){
             shootInput?.Invoke();
         }

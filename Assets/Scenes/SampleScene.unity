@@ -10805,7 +10805,7 @@ MonoBehaviour:
   Timer_monitor: {fileID: 1883855490}
   Round_count_monitor: {fileID: 323471705}
   GameOverScreen: {fileID: 2073546555}
-  zomibeCount: 20
+  zomibeCount: 10
   HotZoneTime: 20
   HotZoneRing: 100
 --- !u!1 &1930063823
