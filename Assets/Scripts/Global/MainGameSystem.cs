@@ -79,10 +79,7 @@ public class MainGameSystem : MonoBehaviour
                 zombie.OnDestroyedZombie += RemoveZombie;
             }
         }
-        Debug.Log("BEFORE");
         newRoundEvent?.Invoke();
-        Debug.Log("AFTER");
-
     }
 
     private string FormatTime(float time)

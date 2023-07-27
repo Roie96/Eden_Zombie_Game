@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    private bool hasControlOverMouse = false;
+    //private bool hasControlOverMouse = false;
 
     static public bool isPaused = false;
     public Canvas existingCanvas;
@@ -63,7 +63,7 @@ public class PauseMenu : MonoBehaviour
 
         yield return null; // Wait for one frame to ensure UI elements are properly rendered
 
-        hasControlOverMouse = true;
+        //hasControlOverMouse = true;
 
         while (Cursor.lockState != CursorLockMode.None)
         {

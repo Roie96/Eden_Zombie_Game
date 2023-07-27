@@ -6,7 +6,7 @@ public class FlagSystem : MonoBehaviour
 {
     public static GameObject flagObject;
     public static Terrain terrain;
-    public static float range = 1/4;
+   
 
     void Start()
     {
@@ -29,9 +29,9 @@ public class FlagSystem : MonoBehaviour
         
     }
 
-    public static void newRandomFlagLocated(){
+     public static void newRandomFlagLocated(){
         Vector3 terrainCenter = terrain.terrainData.bounds.center;
-        Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x* range, terrainCenter);
+        Vector3 newPosition = GetRandomTerrainPosition(terrainCenter.x* 1/2, terrainCenter);
 
         flagObject.transform.position = newPosition;  
     }
@@ -41,10 +41,8 @@ public class FlagSystem : MonoBehaviour
         return flagObject.transform.position;
     }
 
-
-    static public Vector3 GetRandomTerrainPosition(float radius, Vector3 center = default(Vector3))
+     static public Vector3 GetRandomTerrainPosition(float radius, Vector3 center = default(Vector3))
     {
-        
         if (center.Equals(default(Vector3))){
             center = flagObject.transform.position;
         }
@@ -59,13 +57,11 @@ public class FlagSystem : MonoBehaviour
         Vector2 randomOffset = Random.insideUnitCircle * radius;
         Vector3 randomPos = center + new Vector3(randomOffset.x, 0f, randomOffset.y);
 
-        Debug.Log(randomPos);        
-
         // Get the terrain height at the random point
         float terrainHeight = terrain.SampleHeight(randomPos);
         randomPos.y = terrainHeight;
 
-
         return randomPos;
     }
+
 }
