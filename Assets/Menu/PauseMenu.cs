@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    //private bool hasControlOverMouse = false;
-
     static public bool isPaused = false;
     public Canvas existingCanvas;
     public Canvas pauseCanvas;
@@ -62,8 +60,6 @@ public class PauseMenu : MonoBehaviour
     private IEnumerator GrantMouseControlCoroutine(){
 
         yield return null; // Wait for one frame to ensure UI elements are properly rendered
-
-        //hasControlOverMouse = true;
 
         while (Cursor.lockState != CursorLockMode.None)
         {
