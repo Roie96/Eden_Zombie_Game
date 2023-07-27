@@ -44,6 +44,7 @@ public class FlagSystem : MonoBehaviour
 
     static public Vector3 GetRandomTerrainPosition(float radius, Vector3 center = default(Vector3))
     {
+        
         if (center.Equals(default(Vector3))){
             center = flagObject.transform.position;
         }
@@ -58,9 +59,12 @@ public class FlagSystem : MonoBehaviour
         Vector2 randomOffset = Random.insideUnitCircle * radius;
         Vector3 randomPos = center + new Vector3(randomOffset.x, 0f, randomOffset.y);
 
+        Debug.Log(randomPos);        
+
         // Get the terrain height at the random point
         float terrainHeight = terrain.SampleHeight(randomPos);
         randomPos.y = terrainHeight;
+
 
         return randomPos;
     }

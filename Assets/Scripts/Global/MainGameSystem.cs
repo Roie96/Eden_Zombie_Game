@@ -20,6 +20,8 @@ public class MainGameSystem : MonoBehaviour
     private float timeInHotZone = 0;
     public GameOverScreen GameOverScreen;
     public int zomibeCount; 
+    private List<GameObject> zombies = new List<GameObject>();
+
  
     [SerializeField]
     private float HotZoneTime = 120f;
@@ -43,6 +45,14 @@ public class MainGameSystem : MonoBehaviour
         if (!PauseMenu.isPaused && InFlagZone())
         {
             timeInHotZone -= Time.deltaTime;
+
+            // Make all zombies aware of the player when in the flag zone
+            foreach (GameObject zombie in zombies){
+                AI zombieAI = zombie.GetComponent<AI>();
+                if (zombieAI != null)
+                    zombieAI.setToAware();
+            }
+
         }
         if(timeInHotZone <= 0){
             newRound(++round_count);
@@ -59,9 +69,20 @@ public class MainGameSystem : MonoBehaviour
         FlagSystem.newRandomFlagLocated();
 
         // create zombies
-        EnemiesSystem.createZombies(round_count * zomibeCount);
+        for (int i = 0; i < round_count * zomibeCount; i++){
+            GameObject zombieObject = EnemiesSystem.createZombie();
+            Zombie zombie = zombieObject.GetComponent<Zombie>();
+            if (zombie != null){
+                zombies.Add(zombieObject);
 
+                // Subscribe to the OnDestroyedZombie event using a regular method
+                zombie.OnDestroyedZombie += RemoveZombie;
+            }
+        }
+        Debug.Log("BEFORE");
         newRoundEvent?.Invoke();
+        Debug.Log("AFTER");
+
     }
 
     private string FormatTime(float time)
@@ -77,6 +98,13 @@ public class MainGameSystem : MonoBehaviour
     {
         GameOverScreen.Setup(round_count);
         Debug.Log("---- Game Over ----");
+    }
+
+    private void RemoveZombie(Zombie zombie)
+    {
+        GameObject zombieObject = zombie.gameObject;
+        if (zombies.Contains(zombieObject))
+            zombies.Remove(zombieObject);
     }
 
 }

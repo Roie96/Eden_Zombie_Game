@@ -19,13 +19,13 @@ public class EnemiesSystem : MonoBehaviour
 
     }
 
-    public static void createZombies(int n)
-    {
-        for(int i=0; i<n; i++)
-            createZombie();
-    }
+    // public static void createZombies(int n)
+    // {
+    //     for(int i=0; i<n; i++)
+    //         createZombie();
+    // }
 
-    public static void createZombie()
+    public static GameObject createZombie()
     {
         Vector3 position = FlagSystem.GetRandomTerrainPosition(200);
 
@@ -37,6 +37,7 @@ public class EnemiesSystem : MonoBehaviour
             agent.Warp(position);
         }
         ExistZombie++;
+        return zombie;
     }
 }
 

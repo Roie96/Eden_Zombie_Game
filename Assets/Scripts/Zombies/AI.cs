@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using IL3DN;
 using UnityEngine.AI;
+using System;
 
 public class AI : MonoBehaviour
 {
@@ -12,18 +13,20 @@ public class AI : MonoBehaviour
     public float viewDistance = 10f;
     private bool isAware = false;
     protected NavMeshAgent agent;
-    private Renderer renderer;
-
+    private Renderer zombieRenderer;
     private Vector3 randomPointToWalk;
+    
 
     protected float walkSpeed;
     protected float runSpeed;
+
+
 
     public virtual void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        renderer = GetComponent<Renderer>();
+        zombieRenderer = GetComponent<Renderer>();
         CreateRandomPoint();
         MainGameSystem.newRoundEvent+=CreateRandomPoint;
     }
@@ -32,7 +35,7 @@ public class AI : MonoBehaviour
         if(getIsAware()){
             // Chase
             agent.SetDestination(playerTransform.position);
-            renderer.material.color = Color.red;
+            zombieRenderer.material.color = Color.red;
         }
         else{
             agent.speed = walkSpeed;
@@ -67,10 +70,15 @@ public class AI : MonoBehaviour
         return isAware;
     }
 
-    public void setToAware(){
+    public void setToAware()
+    {
         isAware = true;
-        agent.speed = runSpeed;
-    }
+        agent = GetComponent<NavMeshAgent>(); // Reassign the agent if it's null after being destroyed
+        if (agent)
+        {
+            agent.speed = runSpeed;
+        }
+    }   
 
     public void setToUnAware(){
         isAware = false;
@@ -88,5 +96,6 @@ public class AI : MonoBehaviour
         runSpeed = newSpeed;
         walkSpeed = newSpeed/2;
     }
+
 
 }

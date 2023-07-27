@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 public class Zombie : AI, Idamageable
 {
     public ZombieData zombieDATA;
 
     public float health;
 
+    // Create an event delegate with Zombie as the parameter
+    public event Action<Zombie> OnDestroyedZombie;
     
     public void TakeDamage(float damage)
     {
@@ -27,6 +30,8 @@ public class Zombie : AI, Idamageable
     private void OnDestroy()
     {
         EnemiesSystem.ExistZombie--;
+        OnDestroyedZombie?.Invoke(this); // Invoke the event if there are subscribers
+        OnDestroyedZombie = null; // Unsubscribe from the event
     }
 
     // Update is called once per frame
