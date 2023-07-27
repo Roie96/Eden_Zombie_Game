@@ -10123,6 +10123,7 @@ GameObject:
   - component: {fileID: 1814693498}
   - component: {fileID: 1814693497}
   - component: {fileID: 1814693496}
+  - component: {fileID: 1814693499}
   m_Layer: 6
   m_Name: Terrain
   m_TagString: Terrain
@@ -10190,6 +10191,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1814693499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814693495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 240ed16e6086b4beda18ea46890cfbd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1816280811
 GameObject:
   m_ObjectHideFlags: 0
@@ -10805,7 +10818,7 @@ MonoBehaviour:
   Timer_monitor: {fileID: 1883855490}
   Round_count_monitor: {fileID: 323471705}
   GameOverScreen: {fileID: 2073546555}
-  zomibeCount: 10
+  zomibeCount: 4
   HotZoneTime: 20
   HotZoneRing: 100
 --- !u!1 &1930063823
