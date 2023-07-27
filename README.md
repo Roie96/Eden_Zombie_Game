@@ -19,7 +19,7 @@
 | 16 |  2-7/7  | 13 |  On 3.7, we worked for 3 hours to add a damage system to the barricade. Now, after 5 hits from the zombies, the barricade will be destroyed. On 5.7, we continued to work on the build system for 5 hours. Now, you can only place barricades on the terrain, and we spent 5 hours fixing the mouse cursor bug.
 | 17 |  9-14/7  | 0.5 |  On 11.7, we worked for half a hour on the UI.
 | 18 |  16-20/7  | 0 | This week and the week before, we let our friends play the game and give us feedback.
-| 19 |  16-20/7  | 1.5 | Create a survey to determine if the game is playable. On 24.7, we worked for 1 hour to address the feedback and added a hitmark.
+| 19 |  16-20/7  | 3.5 | Create a survey to determine if the game is playable (30 min). On July 24th, we worked for 1 hour to address the feedback and added a hitmark. On July 27th, we had boundary adjustments for the map and finished addressing the feedback (2 more hours).
 
 
 
