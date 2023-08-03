@@ -69,7 +69,7 @@ The woods are crawling with zombies, and their numbers grow with each passing st
 
 <img src="./IMAGES/zombie.png" width="200" alt="zombie">
 
-## Screenshots
+## Screenshots and Videos
 
 <img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.31.png" width="400" alt="menu">
 
@@ -78,6 +78,12 @@ The woods are crawling with zombies, and their numbers grow with each passing st
 <img src="./IMAGES/Screen Shot 2023-08-03 at 14.03.10.png" width="400" alt="gameplay2">
 
 <img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.19.png" width="400" alt="gameplay3">
+
+
+https://github.com/Roie96/Eden_Zombie_Game/assets/100276577/3fc01fd2-0480-457c-bfc2-af804d15a307
+
+https://github.com/Roie96/Eden_Zombie_Game/assets/100276577/9e174809-c95a-4b61-8d8c-6642fdcb6d9b
+
 
 
 
