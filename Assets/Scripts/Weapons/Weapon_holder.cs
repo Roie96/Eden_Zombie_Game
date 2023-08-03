@@ -17,6 +17,7 @@ public class Weapon_holder : MonoBehaviour
 
     public static Action shootInput;
     public static Action reloadInput;
+    
     void Start()
     {
         guns.Add(pistol);
@@ -49,9 +50,6 @@ public class Weapon_holder : MonoBehaviour
             GunScript.isAiming = false;
         }
 
-        // if(Input.GetMouseButtonDown(1)){
-        //     GunScript.isAiming = !GunScript.isAiming;
-        // }
         if (Input.GetMouseButtonDown(1))
         {
             GunScript.isAiming = true; // Start aiming when the right mouse button is pressed
@@ -83,18 +81,17 @@ public class Weapon_holder : MonoBehaviour
         }
     }
 
-    void next_gun()
-    {
+    void next_gun(){
         GunScript = guns[currGun].GetComponent<Gun>();
         guns[currGun].SetActive(false);
-        currGun = (currGun+1)%guns.Count;
+        currGun = (currGun + 1) % guns.Count;
         GunScript.isAiming = false;
         unSubscribe(GunScript);
 
-        GunScript = guns[currGun].GetComponent<Gun>();
+    GunScript = guns[currGun].GetComponent<Gun>();
         guns[currGun].SetActive(true);
         subscribe(GunScript);
-        StartCoroutine(GunScript.up_weapon());    
+        StartCoroutine(GunScript.up_weapon());
     }
 
     void unSubscribe(Gun gun){

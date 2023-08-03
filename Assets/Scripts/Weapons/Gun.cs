@@ -93,7 +93,7 @@ public class Gun : MonoBehaviour
         theGun.GetComponent<Animator>().Play("New State");
     }
 
-    public IEnumerator up_weapon()
+      public IEnumerator up_weapon()
     {
         gunData.reloading = false;
         gunData.isShooting = false;

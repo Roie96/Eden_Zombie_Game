@@ -1,25 +1,87 @@
-#  Eden Log
-| Week number | Date | Total hours  | Report
-|----------|----------|----------|----------|
-| 1 | 19-23/3 | 10 | Researcher on unity environment, brainstorm on the type of game we want to create and writing a pitch
-| 2 |  26-30/3  | 3 | We spent 3 hours in total brainstorming new ideas and rewriting the pitch.
-| 3 |  2-6/4  | 2 | Due to the holiday, we didn't get much work done. In total, we worked for 2 hours, mainly on setting up the project and repository on GitHub.
-| 4 |  8-13/4  | 8 |This week we worked on the map, this is only the first draft and we'll update it later.![Screen Shot 2023-04-16 at 12 19 17](https://user-images.githubusercontent.com/100276577/232289533-8dafc915-4512-4d36-b090-093874d633b2.png)![Screen Shot 2023-04-16 at 12 34 52](https://user-images.githubusercontent.com/100276577/232290103-0ac2ebec-e798-4321-b477-d011f9ebd755.png)![Screen Shot 2023-04-16 at 12 34 38](https://user-images.githubusercontent.com/100276577/232290111-003b70e6-bcce-4c13-bc12-0abe7468f44a.png) https://user-images.githubusercontent.com/100276577/232289611-d001f98e-fabb-4ba4-ab56-689291c071a4.mov
-| 5 |  16-20/4  | 10 | We started to work on the mechanics of the gun (M9) and assault rifle (AK47)
-| 6 |  23-28/4  | 8 | We spent 3 hours finishing the weapon system and 5 hours on the build system. https://user-images.githubusercontent.com/77319162/236696883-153a658d-5138-404e-a016-cb617347361a.mp4
-| 7 |  30/4-6/5  | 8 | It took us 6 hours to finish the build system, and 2 more hours to fix the problems we had with Git (we were having trouble merging our branches).
-| 8 |  7-11 /5  | 8 | we started working on the zombie feature. We spent around 3 hours on it, but unfortunately, we are facing difficulties merging our branches. As a result, most of the week has been dedicated to solving these issues, taking approximately 5 hours. I believe that next week we will be able to resolve them and potentially finish the zombie scripts.
-| 9 |  14-18/5  | 8 | We managed to resolve the Git problem. It took us about 2 hours. Then, we resumed working on the zombie system, which took us about 6 more hours. We believe that next week we will finish the zombie system.
-| 10 |  19-26/5  | 7 | We finished the zombie system, and now we have started working on the "Hot Zone."https://github.com/ido7746/Zombie_Woods/assets/100276577/3e3948b4-563f-4d52-9379-063290966ba0
-| 11 |  28-31/5  | 8 | We continue to work on the hot zone, where we have created an object resembling a torch spitting fire. At the start of the game, this object will appear, and supply drops will be dropping around it while zombies roam the area. Additionally, we have created a main menu. ![Screen Shot 2023-06-01 at 15 44 16](https://github.com/ido7746/Zombie_Woods/assets/100276577/07f39d81-05bb-43ea-8567-dbd35662d0ba) ![Screen Shot 2023-06-01 at 15 44 35](https://github.com/ido7746/Zombie_Woods/assets/100276577/e0557ae3-2fed-43a6-8187-8aa45f5e7e31) https://github.com/ido7746/Zombie_Woods/assets/100276577/a2843949-9845-41f8-8178-eca486d4a056
-| 12 |  4-8/6  | 7 | We are continuing to work on the hot zone and have implemented a "coffee" model that acts as a speed boost. ![Screen Shot 2023-06-09 at 10 46 29](https://github.com/ido7746/Zombie_Woods/assets/100276577/02c971e8-2d8d-4236-89d9-d1033cbe6cbf) https://github.com/ido7746/Zombie_Woods/assets/100276577/33bda788-f048-4ab4-84f4-6e20237b9ec7
-| 13 |  11-15/6  | 0 |  Due to upcoming 2 tests, we did not make any progress.
-| 14 |  18-22/6  | 0 |  Due to upcoming 2 exams, we did not make any progress.
-| 15 |  26-30/6  | 20 |  On 26.6, we worked for 6 hours to improve the build system. on 27.6, we continued working on the build system for 6 hours, attempting to make the barricades snap to each other, but we didn't make any progress. 28.6 we worked for 4 hours on making game over screen. on 30.6 we worked for 4 hours and successfully managed to make the barricades snap next to each other.
-| 16 |  2-7/7  | 13 |  On 3.7, we worked for 3 hours to add a damage system to the barricade. Now, after 5 hits from the zombies, the barricade will be destroyed. On 5.7, we continued to work on the build system for 5 hours. Now, you can only place barricades on the terrain, and we spent 5 hours fixing the mouse cursor bug.
-| 17 |  9-14/7  | 0.5 |  On 11.7, we worked for half a hour on the UI.
-| 18 |  16-20/7  | 0 | This week and the week before, we let our friends play the game and give us feedback.
-| 19 |  16-20/7  | 3.5 | Create a survey to determine if the game is playable (30 min). On July 24th, we worked for 1 hour to address the feedback and added a hitmark. On July 27th, we had boundary adjustments for the map and finished addressing the feedback (2 more hours).
+# Eden- A First-Person Shooter Survival Game
+A project in the computer graphics lab, University of Haifa, 2023.
+
+<img src="./Assets/chasing.png" width="200" alt="Game Logo">
+
+
+## Game Overview
+
+**Genre:** First-Person Shooter, Survival
+
+Welcome to Eden Log, an adrenaline-pumping first-person shooter game with survival elements set in a haunting woods infested with zombies. Inspired by the Call of Duty's Zombies mode and PUBG, the game challenges players to survive against hordes of undead while collecting resources and strategically navigating through stages.
+
+## Gameplay
+
+### Objective
+
+Your goal is to survive as long as possible by exploring the haunting woods, collecting resources, and moving strategically to fend off relentless waves of zombies. As you progress through stages, you'll face formidable targets that must be defeated by standing in their hot zone. This action attracts all nearby zombies, raising the stakes for survival.
+
+To stay alive, you must master resource management, make strategic decisions, and rely on quick reflexes as you navigate the parameter, searching for ammo and supplies. The game keeps you on the edge of your seat, offering a thrilling experience that challenges your survival skills to the limit.
+
+### The Woods
+
+You find yourself trapped in a dense and eerie woods filled with tall trees. As the game progresses, the challenges intensify with more zombies lurking around every corner.
+
+<img src="./IMAGES/WOOD2.png" width="400" alt="Wood2">
+
+<img src="./IMAGES/WOOD1.png" width="400" alt="Wood1">
+
+
+### Weapons & Ammo
+
+Start with a basic gun and a limited supply of ammunition. Scour the map for supply drops to replenish your ammo. There's no limit to how much you can carry.
+<img src="./IMAGES/pistol.png" width="200" alt="pistol">
+<img src="./IMAGES/ak47.png" width="200" alt="ak47">
+
+### Health & Apples
+
+Keep an eye on your health bar as each zombie encounter chips away at your vitality. To regenerate health, search for apples scattered throughout the woods.
+<img src="./IMAGES/apple.png" width="200" alt="apple">
+
+### Construction
+
+Locate special construction packages in supply drops and use them to build fences. These fences offer a temporary shield against zombies in the hot zone, providing a crucial defense mechanism.
+
+<img src="./IMAGES/barricade.png" width="200" alt="barricade">
+
+
+### Stages & Targets
+
+The game is divided into stages of increasing difficulty. Each stage houses a "target" that you must destroy by entering its hot zone. However, this action attracts all nearby zombies, raising the stakes for survival.
+
+<img src="./IMAGES/target.png" width="200" alt="target">
+
+
+### Speed Boost
+
+In dire situations, find and consume coffee or speed boots from supply drops to boost your speed and escape danger.
+
+<img src="./IMAGES/coffee.png" width="200" alt="coffee">
+
+
+### Inventory Management
+
+Strategically manage your inventory, which can hold unlimited ammo, one apple for healing, and one construction package at a time.
+
+### Enemies & AI
+
+The woods are crawling with zombies, and their numbers grow with each passing stage. Encounter relentless and relentless hordes of undead that chase and attack upon sight.
+
+<img src="./IMAGES/zombie.png" width="200" alt="zombie">
+
+## Screenshots
+
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.31.png" width="400" alt="menu">
+
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.04.png" width="400" alt="menu">
+
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.03.10.png" width="400" alt="gameplay2">
+
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.19.png" width="400" alt="gameplay3">
 
 
 
+
+## Download and Play
+
+At this stage, the game can be run within the Unity editor. However, you have the flexibility to build and deploy it on your selected platform for a seamless gaming experience.
