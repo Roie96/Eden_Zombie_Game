@@ -30,12 +30,14 @@ You find yourself trapped in a dense and eerie woods filled with tall trees. As 
 ### Weapons & Ammo
 
 Start with a basic gun and a limited supply of ammunition. Scour the map for supply drops to replenish your ammo. There's no limit to how much you can carry.
-<img src="./IMAGES/pistol.png" width="200" alt="pistol">
-<img src="./IMAGES/ak47.png" width="200" alt="ak47">
+
+<img src="./IMAGES/pistol.png" width="400" alt="pistol">
+<img src="./IMAGES/ak47.png" width="400" alt="ak47">
 
 ### Health & Apples
 
 Keep an eye on your health bar as each zombie encounter chips away at your vitality. To regenerate health, search for apples scattered throughout the woods.
+
 <img src="./IMAGES/apple.png" width="200" alt="apple">
 
 ### Construction
@@ -71,13 +73,13 @@ The woods are crawling with zombies, and their numbers grow with each passing st
 
 ## Screenshots and Videos
 
-<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.31.png" width="400" alt="menu">
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.31.png" width="600" alt="menu">
 
-<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.04.png" width="400" alt="menu">
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.04.png" width="600" alt="menu">
 
-<img src="./IMAGES/Screen Shot 2023-08-03 at 14.03.10.png" width="400" alt="gameplay2">
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.03.10.png" width="600" alt="gameplay2">
 
-<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.19.png" width="400" alt="gameplay3">
+<img src="./IMAGES/Screen Shot 2023-08-03 at 14.04.19.png" width="600" alt="gameplay3">
 
 
 https://github.com/Roie96/Eden_Zombie_Game/assets/100276577/3fc01fd2-0480-457c-bfc2-af804d15a307
