@@ -18,8 +18,8 @@ MonoBehaviour:
   maxDistance: 200
   autoShoot: 0
   noiseDistance: 10
-  currAmmo: 10
-  currMagAmmo: 0
+  currAmmo: 0
+  currMagAmmo: 10
   magSize: 10
   fireRate: 200
   reloadTime: 1.51

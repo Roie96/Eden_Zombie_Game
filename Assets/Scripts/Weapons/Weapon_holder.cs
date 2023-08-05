@@ -11,13 +11,13 @@ public class Weapon_holder : MonoBehaviour
     public List<GameObject> guns = new List<GameObject>();
 
     public int currGun;
-    //public static Action shootInput;
 
     public static Gun GunScript;
-
+    public static bool switch_gun=false;
     public static Action shootInput;
     public static Action reloadInput;
-    
+    private bool isSwitchingGun = false;
+
     void Start()
     {
         guns.Add(pistol);
@@ -50,6 +50,7 @@ public class Weapon_holder : MonoBehaviour
             GunScript.isAiming = false;
         }
 
+   
         if (Input.GetMouseButtonDown(1))
         {
             GunScript.isAiming = true; // Start aiming when the right mouse button is pressed
@@ -73,7 +74,7 @@ public class Weapon_holder : MonoBehaviour
         }
 
         if(Input.GetKeyDown("q")){
-            next_gun();
+            StartCoroutine(next_gun());
         }
         if(Input.GetKeyDown("r")){
             GunScript.isAiming = false;
@@ -81,18 +82,30 @@ public class Weapon_holder : MonoBehaviour
         }
     }
 
-    void next_gun(){
+
+
+
+
+IEnumerator next_gun()
+{
+    if (!isSwitchingGun)
+    {
+        isSwitchingGun = true;
+
         GunScript = guns[currGun].GetComponent<Gun>();
         guns[currGun].SetActive(false);
         currGun = (currGun + 1) % guns.Count;
         GunScript.isAiming = false;
         unSubscribe(GunScript);
 
-    GunScript = guns[currGun].GetComponent<Gun>();
+        GunScript = guns[currGun].GetComponent<Gun>();
         guns[currGun].SetActive(true);
         subscribe(GunScript);
-        StartCoroutine(GunScript.up_weapon());
+
+        yield return StartCoroutine(GunScript.up_weapon());
+        isSwitchingGun = false;
     }
+}
 
     void unSubscribe(Gun gun){
         reloadInput -= gun.StartReload;

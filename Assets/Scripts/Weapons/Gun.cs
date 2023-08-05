@@ -93,12 +93,12 @@ public class Gun : MonoBehaviour
         theGun.GetComponent<Animator>().Play("New State");
     }
 
-      public IEnumerator up_weapon()
+    public IEnumerator up_weapon()
     {
         gunData.reloading = false;
         gunData.isShooting = false;
         theGun.GetComponent<Animator>().Play(gunData.name+"_Up");
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(0.5f);
         theGun.GetComponent<Animator>().Play("New State");
     }
 
